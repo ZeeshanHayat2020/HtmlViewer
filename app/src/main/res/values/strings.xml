@@ -2,13 +2,13 @@
     <string name="app_name">HTML &amp; XML Viewer</string>
 
     <!--Original Adds-->
-    <string name="app_Id" translatable="false">ca-app-pub-8505548585563014~3910900597</string>
+<!--    <string name="app_Id" translatable="false">ca-app-pub-8505548585563014~3910900597</string>
     <string name="interstitial_Id" translatable="false">ca-app-pub-8505548585563014/1093165568</string>
-    <string name="app_open_id" translatable="false">ca-app-pub-8505548585563014/6385306104</string>
+    <string name="app_open_id" translatable="false">ca-app-pub-8505548585563014/6385306104</string>-->
     <!--Test Adds-->
-    <!-- <string name="app_Id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+     <string name="app_Id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
      <string name="banner_Id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-     <string name="interstitial_Id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>-->
+     <string name="interstitial_Id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
 
 
     <string name="msgDialogPermission">To show files, Application needs storage permissions.\nAllow for better experience.</string>
