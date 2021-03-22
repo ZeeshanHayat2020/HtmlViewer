@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HtmlViewer</string>
+
+    <string name="noFilesFound">Nessun file trovato</string>
+    <string name="headDialogPermission">Hai bisogno di autorizzazione</string>
+    <string name="mainHeadOne">Visualizzatore HTML &amp; Editor</string>
+    <string name="mainHeadTwo">Visualizza HTML &amp; File XML</string>
+    <string name="mainHeadThree">Visualizza tutto il tuo HTML &amp; xml. Modifica facilmente i file</string>
+    <string name="attach">Allega</string>
+    <string name="htmlFiles">File HTML</string>
+    <string name="xmlFiles">File XML</string>
+    <string name="recentFiles">File recenti</string>
+    <string name="htmViewer">HTML \nViewer</string>
+    <string name="xmlViewer">XML \nViewer</string>
+    <string name="recetnViewer">Visualizzatore \n recente</string>
+    <string name="splashHeadOne">Visualizzatore ed editore</string>
+    <string name="splashDesc">Visualizza e modifica file HTML</string>
+</resources>

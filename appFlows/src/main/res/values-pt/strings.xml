@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">appFlows</string>
+    <string name="ppHead1">Coleção de Documentos</string>
+    <string name="ppChecked">Eu li e entendi.</string>
+    <string name="decline">Declínio</string>
+    <string name="accept">Aceitar</string>
+    <string name="ppThanks">Obrigado por usar este aplicativo. Aqui você pode ver nossa política de privacidade vinculada a este aplicativo.</string>
+    <string name="ppDesc1">Todos os arquivos não estão mais ocultos no seu dispositivo. XML &amp; O aplicativo HTML ajuda você a lidar com todos os seus arquivos armazenados em seu dispositivo, buscar todos os seus arquivos e exibi-los em uma lista para que você possa gerenciar seus arquivos com eficiência e facilidade.</string>
+    <string name="ppDesc2">Para acessar todos os arquivos, este aplicativo precisa de permissão de armazenamento, que é necessária para recuperar arquivos do armazenamento interno.</string>
+    <string name="skip">Pular</string>
+    <string name="headIntroOne">Leia XML &amp; Arquivos HTML</string>
+    <string name="DescIntroOne">CDATA [Carregar todo o seu HTML &amp; Arquivos XML do armazenamento do seu dispositivo em uma única lista para que você possa rolar facilmente por ela.</string>
+    <string name="headIntroTwo">Arquivos recentes</string>
+    <string name="descIntroTwo">Veja o HTML &amp; Arquivos XML aqui na pasta recente do aplicativo</string>
+    <string name="headConsetForm">Consentimento de proteção de dados</string>
+    <string name="descConsentOne">Nos preocupamos com sua privacidade e segurança de dados. Nós mantemos este aplicativo gratuito exibindo anúncios</string>
+    <string name="descConsentTwo">Podemos continuar a usar seus dados para personalizar anúncios para você?</string>
+    <string name="descConsentThree">Nosso parceiro coletará dados e usará um identificador exclusivo em seu dispositivo para mostrar anúncios \ nInline com a nova proteção de dados e serviço de segurança, precisamos do seu consentimento para veicular anúncios feitos sob medida para você.</string>
+    <string name="btnContinue">Sim continue</string>
+    <string name="exit">Saída</string>
+    <string name="privacy">Privacidade</string>
+    <string name="headPrivacy">Política de Privacidade</string>
+    <string name="ppHeadTwo">Solicitar permissão</string>
+    <string name="ppDescTwo">Para experimentar totalmente este aplicativo, você precisa permitir algumas permissões que são necessárias para que o aplicativo funcione de forma eficiente. Para buscar, modificar ou excluir arquivos, o aplicativo precisa acessar as informações do dispositivo. Não se preocupe, as informações coletadas serão mantidas em sigilo.</string>
+    <string name="ppHeadThree">ESCREVER ARMAZENAMENTO EXTERNO</string>
+    <string name="ppDescThree">O aplicativo precisa de permissões de armazenamento externo para buscar todos os arquivos do armazenamento do seu dispositivo e exibi-los em uma única lista para que você possa ver, excluir ou compartilhar arquivos com apenas um único clique.</string>
+</resources>

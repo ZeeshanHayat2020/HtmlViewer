@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HtmlViewer</string>
+
+    <string name="noFilesFound">Файлов не найдено</string>
+    <string name="headDialogPermission">Требуется разрешение</string>
+    <string name="mainHeadOne">Средство просмотра HTML &amp; редактор</string>
+    <string name="mainHeadTwo">Просмотреть HTML &amp; XML файлы</string>
+    <string name="mainHeadThree">Просмотреть все ваши HTML &amp; xml. Легко редактировать файлы.</string>
+    <string name="attach">Прикреплять</string>
+    <string name="htmlFiles">HTML файлы</string>
+    <string name="xmlFiles">XML файлы</string>
+    <string name="recentFiles">Недавние файлы</string>
+    <string name="htmViewer">HTML \nViewer</string>
+    <string name="xmlViewer">XML \nViewer</string>
+    <string name="recetnViewer">Недавний \nViewer</string>
+    <string name="splashHeadOne">Наблюдатель и редактор</string>
+    <string name="splashDesc">Просмотр и редактирование файлов HTML</string>
+</resources>

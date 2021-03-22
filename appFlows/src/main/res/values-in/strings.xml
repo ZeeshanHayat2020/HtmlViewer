@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">appFlows</string>
+
+    <string name="ppHead1">Koleksi Dokumen</string>
+    <string name="ppChecked">Saya Membaca dan Mengerti.</string>
+    <string name="decline">Menurun</string>
+    <string name="accept">Menerima</string>
+    <string name="ppThanks">Terima kasih telah menggunakan aplikasi ini. Di sini Anda dapat melihat kebijakan privasi kami yang ditautkan dengan aplikasi ini.</string>
+    <string name="ppDesc1">Semua file tidak lagi tersembunyi di perangkat Anda. XML &amp; Aplikasi HTML membantu Anda menangani semua file yang disimpan di perangkat Anda, mengambil semua file Anda dan menampilkannya dalam daftar sehingga Anda dapat mengelola file Anda secara efisien dan mudah.</string>
+    <string name="ppDesc2">Untuk mengakses semua file, aplikasi ini membutuhkan izin penyimpanan yang diperlukan untuk mengambil file dari penyimpanan internal.</string>
+    <string name="skip">Melewatkan</string>
+    <string name="headIntroOne">Baca XML &amp; File HTML</string>
+    <string name="DescIntroOne">Muat semua HTML &amp; File XML dari penyimpanan perangkat Anda dalam satu daftar sehingga Anda dapat dengan mudah menggulirnya.</string>
+    <string name="headIntroTwo">File Terbaru</string>
+    <string name="descIntroTwo">Lihat HTML Anda yang baru dibuka &amp; File XML di sini di folder terbaru aplikasi</string>
+    <string name="headConsetForm">Persetujuan Perlindungan Data</string>
+    <string name="descConsentOne">Kami peduli dengan privasi dan keamanan data Anda. Kami membuat aplikasi ini tetap gratis dengan menampilkan iklan</string>
+    <string name="descConsentTwo">Bisakah kami terus menggunakan data Anda untuk menyesuaikan iklan untuk Anda?</string>
+    <string name="descConsentThree">Mitra kami akan mengumpulkan data dan menggunakan pengenal unik di perangkat Anda untuk menampilkan iklan \ nSesuai dengan Perlindungan Data dan Layanan Keamanan baru, Kami membutuhkan persetujuan Anda untuk menayangkan iklan yang disesuaikan untuk Anda.</string>
+    <string name="btnContinue">Ya, Lanjutkan</string>
+    <string name="exit">Keluar</string>
+    <string name="privacy">Pribadi</string>
+    <string name="headPrivacy">Rahasia pribadi</string>
+    <string name="ppHeadTwo">Minta Izin</string>
+    <string name="ppDescTwo">Untuk sepenuhnya mengalami aplikasi ini, Anda perlu mengizinkan beberapa izin yang diperlukan agar aplikasi berfungsi secara efisien. Untuk mengambil, mengubah, atau menghapus file, aplikasi memerlukan akses ke informasi perangkat. Jangan khawatir informasi yang dikumpulkan akan dirahasiakan.</string>
+    <string name="ppHeadThree">TULIS PENYIMPANAN EKSTERNAL</string>
+    <string name="ppDescThree">Aplikasi memerlukan izin penyimpanan eksternal untuk mengambil semua file dari penyimpanan perangkat Anda dan menampilkannya dalam satu daftar sehingga Anda dapat melihat, menghapus, atau berbagi file hanya dengan satu klik ..</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HtmlViewer</string>
+
+    <string name="noFilesFound">لا توجد ملفات</string>
+    <string name="headDialogPermission">تحتاج إذن</string>
+    <string name="mainHeadOne">عارض ومحرر HTML</string>
+    <string name="mainHeadTwo">عرض ملفات HTML و XML</string>
+    <string name="mainHeadThree">اعرض جميع ملفات html و xml الخاصة بك. \ n قم بتحرير الملفات بسهولة</string>
+    <string name="attach">يربط</string>
+    <string name="htmlFiles">ملفات HTML</string>
+    <string name="xmlFiles">ملفات XML</string>
+    <string name="recentFiles">الملفات الأخيرة</string>
+    <string name="htmViewer">عارض"
+        "HTML</string>
+    <string name="xmlViewer">عارض XML \ n</string>
+    <string name="recetnViewer">عارض \ n حديث</string>
+    <string name="splashHeadOne">عارض ومحرر</string>
+    <string name="splashDesc">عرض وتحرير ملفات Html</string>
+
+</resources>

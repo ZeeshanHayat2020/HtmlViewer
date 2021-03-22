@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">appFlows</string>
+
+    <string name="ppHead1">Raccolta di documenti</string>
+    <string name="ppChecked">Ho letto e capito.</string>
+    <string name="decline">Declino</string>
+    <string name="accept">Accettare</string>
+    <string name="ppThanks">Grazie per aver utilizzato questa app. Qui puoi vedere la nostra politica sulla privacy collegata a questa app.</string>
+    <string name="ppDesc1">Tutti i file non sono più nascosti nel tuo dispositivo. XML &amp; L\'app HTML ti aiuta a gestire tutti i tuoi file memorizzati nel tuo dispositivo, a recuperare tutti i tuoi file e visualizzarli in un elenco in modo da poter gestire i tuoi file in modo efficiente e semplice.</string>
+    <string name="ppDesc2">Per accedere a tutti i file, questa app necessita dell\'autorizzazione di archiviazione necessaria per recuperare i file dalla memoria interna.</string>
+    <string name="skip">Salta</string>
+    <string name="headIntroOne">Leggi XML &amp; File HTML</string>
+    <string name="DescIntroOne">Carica tutto il tuo HTML &amp; File XML dalla memoria del dispositivo in un unico elenco in modo da poterlo scorrere facilmente.</string>
+    <string name="headIntroTwo">File recenti</string>
+    <string name="descIntroTwo">Visualizza il tuo codice HTML aperto di recente &amp; File XML qui nella cartella recente dell\'app</string>
+    <string name="headConsetForm">Consenso alla protezione dei dati</string>
+    <string name="descConsentOne">Abbiamo a cuore la tua privacy e la sicurezza dei dati. Manteniamo questa app gratuita mostrando annunci</string>
+    <string name="descConsentTwo">Possiamo continuare a utilizzare i tuoi dati per personalizzare gli annunci per te?</string>
+    <string name="descConsentThree">Il nostro partner raccoglierà dati e utilizzerà un identificatore univoco sul tuo dispositivo per mostrarti annunci \ nIn linea con il nuovo servizio di protezione e sicurezza dei dati, abbiamo bisogno del tuo consenso per pubblicare annunci su misura per te.</string>
+    <string name="btnContinue">Sì, continua</string>
+    <string name="exit">Uscita</string>
+    <string name="privacy">Privacy</string>
+    <string name="headPrivacy">politica sulla riservatezza</string>
+    <string name="ppHeadTwo">Richiesta di permesso</string>
+    <string name="ppDescTwo">Per sfruttare appieno questa app è necessario consentire alcune autorizzazioni necessarie affinché l\'app funzioni in modo efficiente. Per recuperare, modificare o eliminare i file, l\'app deve accedere alle informazioni del dispositivo. Non preoccuparti, le informazioni raccolte rimarranno private.</string>
+    <string name="ppHeadThree">SCRIVI ARCHIVIAZIONE ESTERNA</string>
+    <string name="ppDescThree">L\'app necessita di autorizzazioni di archiviazione esterna per recuperare tutti i file dalla memoria del dispositivo e per visualizzarli in un unico elenco in modo da poter visualizzare, eliminare o condividere file con un solo clic.</string>
+</resources>

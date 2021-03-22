@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.zapps.html.xml.viewer.file.reader.activities.ActivityMain">
+
+        <View
+            android:id="@+id/viewHeaderBG"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_300sdp"
+            android:background="@drawable/ic_sv_main_header_bg"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="@dimen/_240sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_50sdp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="@+id/viewHeaderBG"
+            app:layout_constraintRight_toRightOf="@+id/viewHeaderBG"
+            app:layout_constraintTop_toTopOf="@+id/viewHeaderBG"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/iv_header_main" />
+
+        <ImageView
+            android:id="@+id/btnMenu"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:background="@drawable/ripple_effect_primary_dark_square"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/_8sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_sv_main_btn_menu" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/ikaros_regular"
+            android:gravity="left"
+            android:lineSpacingExtra="@dimen/_8sdp"
+            android:maxLines="3"
+            android:text="@string/mainHeadOne"
+            android:textColor="@color/colorTextPrimaryDark"
+            android:textSize="@dimen/_28sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnMenu" />
+
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_3sdp"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/shape_line_view"
+            app:layout_constraintBottom_toBottomOf="@+id/textView11"
+            app:layout_constraintLeft_toLeftOf="@+id/textView11"
+            app:layout_constraintTop_toTopOf="@+id/textView11"
+            app:layout_constraintVertical_bias="0.946" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/ikaros_regular"
+            android:gravity="left"
+            android:maxLines="1"
+            android:text="@string/mainHeadTwo"
+            android:textColor="@color/colorTextPrimaryDark"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="@+id/textView11"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="wrap_content"
+            android:alpha="0.9"
+            android:ellipsize="end"
+            android:fontFamily="@font/ikaros_regular"
+            android:gravity="left"
+            android:maxLines="3"
+            android:text="@string/mainHeadThree"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintEnd_toEndOf="@+id/textView12"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAttachFile"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:background="@drawable/selector_b_b_language"
+            android:drawableLeft="@drawable/ic_sv_attach"
+            android:drawablePadding="@dimen/_5sdp"
+            android:fontFamily="@font/franklin_gothic_medium"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingRight="@dimen/_20sdp"
+            android:text="@string/attach"
+            android:textAllCaps="false"
+            android:textColor="@color/text_selector_b_language"
+            app:layout_constraintBottom_toTopOf="@+id/rootViewPager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintVertical_bias="0.381" />
+
+        <RelativeLayout
+            android:id="@+id/rootViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_185sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.zapps.html.xml.viewer.file.reader.views.ClickableViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_175sdp"
+                android:layout_alignParentBottom="true"
+                android:clipToPadding="false"
+                android:foregroundGravity="bottom"
+                android:overScrollMode="never"
+                android:paddingStart="@dimen/_65sdp"
+                android:paddingTop="@dimen/_20sdp"
+                android:paddingEnd="@dimen/_65sdp" />
+
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

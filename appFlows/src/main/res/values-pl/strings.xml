@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">appFlows</string>
+
+    <string name="ppHead1">Zbieranie dokumentów</string>
+    <string name="ppChecked">Przeczytałem i zrozumiałem.</string>
+    <string name="decline">Upadek</string>
+    <string name="accept">Zaakceptować</string>
+    <string name="ppThanks">Dziękujemy za korzystanie z tej aplikacji. Tutaj możesz zobaczyć naszą politykę prywatności powiązaną z tą aplikacją.</string>
+    <string name="ppDesc1">Wszystkie pliki nie są już ukryte na Twoim urządzeniu. XML &amp; Aplikacja HTML pomaga zarządzać wszystkimi plikami przechowywanymi na urządzeniu, pobierać wszystkie pliki i wyświetlać je na liście, dzięki czemu możesz wydajnie i łatwo zarządzać swoimi plikami.</string>
+    <string name="ppDesc2">Aby uzyskać dostęp do wszystkich plików, ta aplikacja potrzebuje uprawnień do przechowywania, które są wymagane do pobierania plików z pamięci wewnętrznej.</string>
+    <string name="skip">Pominąć</string>
+    <string name="headIntroOne">Przeczytaj XML &amp; Pliki HTML</string>
+    <string name="DescIntroOne">Załaduj cały kod HTML &amp; Pliki XML z pamięci urządzenia na jednej liście, dzięki czemu można ją łatwo przewijać.</string>
+    <string name="headIntroTwo">Ostatnie pliki</string>
+    <string name="descIntroTwo">Zobacz ostatnio otwarty kod HTML &amp; Pliki XML tutaj w ostatnim folderze aplikacji</string>
+    <string name="headConsetForm">Zgoda na ochronę danych</string>
+    <string name="descConsentOne">Dbamy o Twoją prywatność i bezpieczeństwo danych. Utrzymujemy tę aplikację bezpłatnie, wyświetlając reklamy</string>
+    <string name="descConsentTwo">Czy możemy nadal wykorzystywać Twoje dane do dostosowywania reklam do Ciebie?</string>
+    <string name="descConsentThree">Nasz partner będzie zbierał dane i używał unikalnego identyfikatora na Twoim urządzeniu, aby wyświetlać reklamy. \ NW połączeniu z nową usługą ochrony i bezpieczeństwa danych, potrzebujemy Twojej zgody na wyświetlanie reklam dostosowanych do Ciebie.</string>
+    <string name="btnContinue">Tak, kontynuuj</string>
+    <string name="exit">Wyjście</string>
+    <string name="privacy">Prywatność</string>
+    <string name="headPrivacy">Polityka prywatności</string>
+    <string name="ppHeadTwo">Prośba o pozwolenie</string>
+    <string name="ppDescTwo">Aby w pełni korzystać z tej aplikacji, musisz zezwolić na niektóre uprawnienia wymagane do wydajnego działania aplikacji. Aby pobrać, zmodyfikować lub usunąć pliki, aplikacja musi mieć dostęp do informacji o urządzeniu. Nie martw się, że zebrane informacje pozostaną prywatne.</string>
+    <string name="ppHeadThree">NAPISZ MAGAZYNOWANIE ZEWNĘTRZNE</string>
+    <string name="ppDescThree">Aplikacja potrzebuje uprawnień do pamięci zewnętrznej, aby pobrać wszystkie pliki z pamięci urządzenia i wyświetlić je na jednej liście, dzięki czemu można wyświetlać, usuwać lub udostępniać pliki jednym kliknięciem.</string>
+</resources>

@@ -1,0 +1,4 @@
+include ':allDocsReader'
+include ':appFlows'
+include ':app'
+rootProject.name = "HtmlViewer"

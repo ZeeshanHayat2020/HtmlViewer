@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_132sdp"
+    android:layout_gravity="bottom"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardCornerRadius="@dimen/_15sdp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:id="@+id/itemCard_rootViewFiles"
+        android:layout_width="@dimen/_136sdp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/selector_b_main_card"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/itemCards_tv"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:ellipsize="end"
+            android:fontFamily="@font/ikaros_regular"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="Card title"
+            android:textColor="@color/colorTextPrimaryDark"
+            android:textSize="@dimen/_14sdp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

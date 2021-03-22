@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="clickHandler"
+            type="com.zapps.html.xml.viewer.file.reader.interfaces.MyOnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@color/colorShadow"
+        android:onClick="@{(v)->clickHandler.onClick(v)}"
+        android:padding="@dimen/_10sdp">
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnFab3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:backgroundTint="@color/white"
+            android:onClick="@{(v)->clickHandler.onClick(v)}"
+            android:src="@drawable/ic_sv_share"
+            app:backgroundTint="@color/white"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/btnFab2"
+            app:layout_constraintEnd_toEndOf="@+id/btnFab2"
+            app:layout_constraintStart_toStartOf="@+id/btnFab2"
+            app:rippleColor="@color/colorAccent"
+            app:tint="@color/colorPrimaryDark" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnFab2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:backgroundTint="@color/white"
+            android:onClick="@{(v)->clickHandler.onClick(v)}"
+            android:src="@drawable/ic_sv_delete"
+            app:backgroundTint="@color/white"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/btnFab1"
+            app:layout_constraintEnd_toEndOf="@+id/btnFab1"
+            app:layout_constraintStart_toStartOf="@+id/btnFab1"
+            app:rippleColor="@color/colorAccent"
+            app:tint="@color/colorPrimaryDark" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnFab1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:backgroundTint="@color/white"
+            android:onClick="@{(v)->clickHandler.onClick(v)}"
+            android:src="@drawable/ic_sv_edit"
+            app:backgroundTint="@color/white"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/btnCrossMenu"
+            app:layout_constraintEnd_toEndOf="@+id/btnCrossMenu"
+            app:layout_constraintStart_toStartOf="@+id/btnCrossMenu"
+            app:rippleColor="@color/colorAccent"
+            app:tint="@color/colorPrimaryDark" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnCrossMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_17sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:backgroundTint="@color/white"
+            android:onClick="@{(v)->clickHandler.onClick(v)}"
+            android:src="@drawable/ic_sv_add"
+            app:backgroundTint="@color/colorPrimaryDark"
+            app:borderWidth="1dp"
+            app:elevation="6dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/colorAccent"
+            app:tint="@color/colorPrimaryDark" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">appFlows</string>
+
+
+    <string name="ppHead1">جمع الوثائق</string>
+    <string name="ppChecked">قرأت وفهمت.</string>
+    <string name="decline">انخفاض</string>
+    <string name="accept">قبول</string>
+    <string name="ppThanks">شكرا لاستخدام هذا التطبيق. هنا يمكنك الاطلاع على سياسة الخصوصية المرتبطة بهذا التطبيق.</string>
+    <string name="ppDesc1">لم تعد جميع الملفات مخفية في جهازك. XML &amp; أمبير ؛ يساعدك تطبيق HTML على التعامل مع جميع ملفاتك المخزنة في جهازك ، وجلب جميع ملفاتك وعرضها في قائمة حتى تتمكن من إدارة ملفاتك بكفاءة وسهولة.</string>
+    <string name="ppDesc2">من أجل الوصول إلى جميع الملفات ، يحتاج هذا التطبيق إلى إذن تخزين مطلوب لاسترداد الملفات من وحدة التخزين الداخلية.</string>
+    <string name="skip">تخطى</string>
+    <string name="headIntroOne"> قراءة XML &amp; amp؛ ملفات HTML</string>
+    <string name="DescIntroOne">قم بتحميل كل ملفات HTML الخاصة بك وأمبير. ملفات XML من تخزين جهازك في قائمة واحدة بحيث يمكنك التمرير خلالها بسهولة.</string>
+    <string name="headIntroTwo">الملفات الأخيرة</string>
+    <string name="descIntroTwo">شاهد ملفات HTML التي تم فتحها مؤخرًا وأمبير. ملفات XML هنا في مجلد التطبيق الأخير</string>
+    <string name="headConsetForm">موافقة حماية البيانات</string>
+    <string name="descConsentOne">نحن نهتم بخصوصيتك وأمان بياناتك. نحافظ على هذا التطبيق مجانيًا من خلال عرض الإعلانات</string>
+    <string name="descConsentTwo">هل يمكننا الاستمرار في استخدام بياناتك لتخصيص الإعلانات لك؟</string>
+    <string name="descConsentThree">سيجمع شريكنا البيانات ويستخدم معرّفًا فريدًا على جهازك لعرض الإعلانات لك \ n بالتوافق مع خدمة حماية البيانات والأمان الجديدة ، نحتاج إلى موافقتك لتقديم إعلانات مخصصة لك</string>
+    <string name="btnContinue">نعم ، استمر</string>
+    <string name="exit">مخرج</string>
+    <string name="privacy">خصوصية</string>
+    <string name="headPrivacy">سياسة خاصة</string>
+    <string name="ppHeadTwo">طلب إذن</string>
+    <string name="ppDescTwo">لتجربة هذا التطبيق بالكامل ، تحتاج إلى السماح ببعض الأذونات المطلوبة لكي يعمل التطبيق بكفاءة. من أجل جلب الملفات أو تعديلها أو حذفها ، يحتاج التطبيق إلى الوصول إلى معلومات الجهاز. لا تقلق من أن المعلومات التي تم جمعها ستبقى سرية.</string>
+    <string name="ppHeadThree">اكتب التخزين الخارجي</string>
+    <string name="ppDescThree">يحتاج التطبيق إلى أذونات تخزين خارجية لجلب جميع الملفات من مساحة تخزين جهازك وعرضها في قائمة واحدة حتى تتمكن من عرض الملفات أو حذفها أو مشاركتها بنقرة واحدة فقط ..</string>
+</resources>

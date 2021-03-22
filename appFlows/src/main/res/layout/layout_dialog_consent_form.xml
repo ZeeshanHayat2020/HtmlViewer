@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="clickHandler"
+            type="com.zapps.appsFlowModule.interfaces.MyOnClickListener" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:cardCornerRadius="@dimen/_10sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_15sdp">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/ikaros_regular"
+                android:text="@string/headConsetForm"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvConsentHead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/ikaros_regular"
+                android:gravity="center"
+                android:text="@string/descConsentOne"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintEnd_toEndOf="@+id/textView9"
+                app:layout_constraintStart_toStartOf="@+id/textView9"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/ikaros_regular"
+                android:gravity="center"
+                android:text="@string/descConsentTwo"
+                android:textColor="@color/colorHeadingDark"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="@+id/tvConsentHead"
+                app:layout_constraintStart_toStartOf="@+id/tvConsentHead"
+                app:layout_constraintTop_toBottomOf="@+id/tvConsentHead" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:fontFamily="@font/ikaros_regular"
+                android:gravity="center"
+                android:text="@string/descConsentThree"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintBottom_toTopOf="@id/btnConserContinue"
+                app:layout_constraintEnd_toEndOf="@+id/textView1"
+                app:layout_constraintStart_toStartOf="@+id/textView1"
+                app:layout_constraintTop_toBottomOf="@+id/textView1" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnConserContinue"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/selector_b_b_privacy_accept"
+                android:fontFamily="@font/franklin_gothic_medium"
+                android:gravity="center"
+                android:onClick="@{(v)->clickHandler.onClick(v)}"
+                android:text="@string/btnContinue"
+                android:textAllCaps="false"
+                android:textColor="@color/text_selector_privacy_accept"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/btnConserExit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnConserExit"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/selector_b_b_language"
+
+                android:ellipsize="end"
+                android:fontFamily="@font/franklin_gothic_medium"
+                android:gravity="center"
+                android:maxLines="1"
+                android:onClick="@{(v)->clickHandler.onClick(v)}"
+                android:text="@string/exit"
+
+                android:textAllCaps="true"
+                android:textColor="@color/text_selector_b_language"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnConserPrivacy"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/selector_b_b_language"
+                android:ellipsize="end"
+                android:fontFamily="@font/franklin_gothic_medium"
+                android:gravity="center"
+                android:maxLines="1"
+                android:onClick="@{(v)->clickHandler.onClick(v)}"
+                android:text="@string/privacy"
+                android:textAllCaps="true"
+                android:textColor="@color/text_selector_b_language"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>
+

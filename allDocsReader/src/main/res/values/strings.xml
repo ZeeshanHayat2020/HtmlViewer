@@ -1,0 +1,205 @@
+<resources>
+    <string name="app_name">HTML Viewer</string>
+    <!--Package Name com.example.htmlviewer.mDocReaders-->
+
+    <!--Original Adds--><!--
+    <string name="app_Id" translatable="false">ca-app-pub-8505548585563014~5982111306</string>
+    <string name="banner_Id" translatable="false">ca-app-pub-8505548585563014/3013344795</string>
+    <string name="interstitial_Id" translatable="false">ca-app-pub-8505548585563014/5938891034</string>-->
+
+    <!--Test Adds-->
+    <string name="app_Id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="banner_Id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_Id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+
+
+    <string name="sys_url_wxiwei" translatable="false">https://my.oschina.net/wxiwei</string>
+    <string name="sys_url_internet_search" translatable="false">http://www.baidu.com</string>
+    <string name="english" translatable="false">English</string>
+    <string name="arabic" translatable="false">عربى</string>
+    <string name="chinies" translatable="false">中文</string>
+    <string name="france" translatable="false">Française</string>
+    <string name="german" translatable="false">Keim</string>
+    <string name="indonesian" translatable="false">bahasa Indonesia</string>
+    <string name="italian" translatable="false">Italiana</string>
+    <string name="polish" translatable="false">Polskie</string>
+    <string name="portuguese" translatable="false">portuguesa</string>
+    <string name="russian" translatable="false">русский</string>
+    <string name="spanish" translatable="false">española</string>
+
+
+    <string name="document_properties_invalid_date" translatable="false">Invalid date</string>
+    <string name="document_properties_retrieval_failed" translatable="false">Failed to obtain document metadata</string>
+
+    <string name="invalid_mime_type" translatable="false">Cannot open file with invalid MIME type</string>
+    <string name="legacy_file_uri" translatable="false">Cannot open legacy file paths from insecure apps</string>
+    <string name="io_error" translatable="false">Received I/O error trying to open content</string>
+
+
+    <string name="app_searchbar_failed" translatable="false">XDOCS Reader cannot find the data you are searching for</string>
+    <string name="app_searchbar_reachedBegin" translatable="false">XDOCS Reader has reached the beginning of the document</string>
+    <string name="app_searchbar_reachedEnd" translatable="false">XDOCS Reader has reached the end of the document</string>
+    <string name="dialog_name_error" translatable="false">%s already exists.</string>
+    <string name="dialog_delete_file" translatable="false">Are you sure you want to delete the selected item(s)?</string>
+    <string name="dialog_move_file_error" translatable="false">You can not move or copy a folder into itself.</string>
+    <string name="dialog_overwrite_file" translatable="false">Do you want to overwrite it?</string>
+
+    <string name="sys_button_ok" translatable="false">OK</string>
+    <string name="sys_button_cancel" translatable="false">Cancel</string>
+    <string name="sys_button_memory_card" translatable="false">MemoryCard</string>
+    <string name="sys_button_search" translatable="false">Search</string>
+    <string name="sys_button_recently_files" translatable="false">Recently Files</string>
+    <string name="sys_button_mark_files" translatable="false">Marked Files</string>
+    <string name="sys_button_local_storage" translatable="false">Local Storage</string>
+    <string name="sys_menu_settings" translatable="false">Settings</string>
+    <string name="sys_menu_account" translatable="false">Account</string>
+    <string name="sys_menu_register" translatable="false">Register</string>
+    <string name="sys_menu_update" translatable="false">Update</string>
+    <string name="sys_menu_help" translatable="false">Help</string>
+    <string name="sys_menu_about" translatable="false">About</string>
+    <string name="sys_search_hint" translatable="false">Search for files</string>
+    <string name="sys_no_match" translatable="false">No matches.</string>
+    <string name="sys_share_title" translatable="false">Sending mail…</string>
+    <string name="sys_progress_message_loading" translatable="false">Loading, please wait…</string>
+    <string name="file_toolsbar_create_folder" translatable="false">Create folder</string>
+    <string name="file_toolsbar_rename" translatable="false">Rename</string>
+    <string name="file_toolsbar_copy" translatable="false">Copy</string>
+    <string name="file_toolsbar_cut" translatable="false">Cut</string>
+    <string name="file_toolsbar_paste" translatable="false">Paste</string>
+    <string name="file_toolsbar_delete" translatable="false">Delete</string>
+    <string name="file_toolsbar_share" translatable="false">Share</string>
+    <string name="file_toolsbar_sort" translatable="false">Sort</string>
+    <string name="file_toolsbar_print" translatable="false">Printer</string>
+    <string name="file_toolsbar_mark_star" translatable="false">Mark</string>
+    <string name="file_toolsbar_unmark_star" translatable="false">UnMark</string>
+    <string name="file_message_empty_directory" translatable="false">Empty Folder</string>
+    <string name="app_toolsbar_hyperlink" translatable="false">Goto</string>
+    <string name="app_toolsbar_find" translatable="false">Find</string>
+    <string name="app_toolsbar_share" translatable="false">Share</string>
+    <string name="app_toolsbar_internet_search" translatable="false">Internet Search</string>
+    <string name="app_toolsbar_read" translatable="false">Read</string>
+    <string name="app_toolsbar_approve" translatable="false">Approve</string>
+    <string name="app_toolsbar_generated_picture" translatable="false">Generated Picture</string>
+    <string name="app_toolsbar_draw" translatable="false">Draw Mode</string>
+    <string name="app_toolsbar_back" translatable="false">Back</string>
+    <string name="app_toolsbar_pen" translatable="false">UnDraw</string>
+    <string name="app_toolsbar_pen_check" translatable="false">Draw</string>
+    <string name="app_toolsbar_eraser" translatable="false">UnErase</string>
+    <string name="app_toolsbar_eraser_check" translatable="false">Erase</string>
+    <string name="app_toolsbar_color" translatable="false">Pen Settings</string>
+    <string name="app_searchbar_backward" translatable="false">Find Backward</string>
+    <string name="app_searchbar_forward" translatable="false">Find Forward</string>
+    <string name="app_searchbar_find" translatable="false">Find</string>
+    <string name="wp_toolsbar_switch_view" translatable="false">Switch View</string>
+    <string name="wp_toolsbar_print_mode" translatable="false">Print Mode</string>
+    <string name="wp_toolsbar_select_text" translatable="false">Select Text</string>
+    <string name="ss_toolsbar_sheet_switch" translatable="false">Sheet Switch</string>
+    <string name="pg_toolsbar_note" translatable="false">Note</string>
+    <string name="pg_slideshow" translatable="false">SlideShow</string>
+    <string name="pg_slideshow_pageup" translatable="false">Page Up</string>
+    <string name="pg_slideshow_pagedown" translatable="false">Page Down</string>
+
+
+    <string name="dialog_encoding_title" translatable="false">Text Encoding</string>
+    <string name="dialog_folder_name" translatable="false">Folder Name</string>
+    <string name="dialog_create_folder_error" translatable="false">Failed to create folder</string>
+    <string name="dialog_file_name" translatable="false">File Name</string>
+    <string name="dialog_file_rename_error" translatable="false">Failed to rename file</string>
+    <string name="dialog_error_title" translatable="false">Error</string>
+    <string name="dialog_descending" translatable="false">Descending</string>
+    <string name="dialog_ascending" translatable="false">Ascending</string>
+    <string name="dialog_insufficient_memory" translatable="false">Unable to complete operation due to insufficient memory</string>
+    <string name="dialog_system_crash_error" translatable="false">System crash, terminate running</string>
+    <string name="dialog_format_error" translatable="false">File format error</string>
+    <string name="dialog_old_document" translatable="false">The document is too old - Office 95 or older, which is not supported</string>
+    <string name="dialog_parse_error" translatable="false">File parsing error</string>
+    <string name="dialog_rtf_file" translatable="false">The document is really a RTF file, which is not supported</string>
+    <string name="title_activity_home" translatable="false">HomeActivity</string>
+
+    <string name="pass_protected" translatable="false">Protected</string>
+    <string name="protected_msg" translatable="false">File is password protected. App cannot open this file.</string>
+
+    <string name="dialogMsgFilesFetching">While app is retrieving files from external storage.</string>
+    <string name="msgDialogPermission">To show word files, Application needs storage permissions.\nAllow for better experience.</string>
+    <string name="dialogeHead_permAlert">Permission Alert.</string>
+    <string name="skip">Skip</string>
+    <string name="allow">Allow</string>
+    <string name="noThanks">NoThanks</string>
+    <string name="rename_file">Rename File</string>
+    <string name="delete_file">Delete File</string>
+    <string name="share_file">Share File</string>
+    <string name="search">Search</string>
+    <string name="files">Files</string>
+    <string name="more">More</string>
+    <string name="ppHead">Privacy Policy</string>
+    <string name="delete_msg">Are you sure you want to delete</string>
+    <string name="enter_name">Enter new name.</string>
+    <string name="share_app">Share App</string>
+    <string name="rate_app">Rate App</string>
+    <string name="more_apps">More Apps</string>
+    <string name="reader">Reader</string>
+    <string name="selectLang">Select Language</string>
+    <string name="next">Next</string>
+    <string name="start">Start</string>
+    <string name="introOneHead">All Files</string>
+    <string name="introTwoHead">Favourite</string>
+    <string name="introThreeHead">Multi Select</string>
+    <string name="pp_posted">Posted: 3 March 2021</string>
+    <string name="ppHead1">Document Collection</string>
+    <string name="ppHead2">Need Permission</string>
+    <string name="ppChecked">I Read and Understood.</string>
+    <string name="decline">Decline</string>
+    <string name="accept">Accept</string>
+    <string name="no_files_found">No Files Found.</string>
+    <string name="noSearchFound">No Such File Found</string>
+    <string name="all_files">All Files</string>
+    <string name="recent">Recent</string>
+    <string name="fav">Favourite</string>
+    <string name="pleasWait">Please Wait</string>
+    <string name="dialogMsgRenaming">Files are renaming.!</string>
+    <string name="dialogMsgDeleting">Files are deleting.</string>
+    <string name="deleteAlert">Delete Alert!</string>
+    <string name="selectedFiles">selected files.?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="rename">Rename</string>
+    <string name="renameSuccess">File renamed successfully.</string>
+    <string name="deleteSuccess">File deleted successfully.</string>
+    <string name="languages">Languages</string>
+    <string name="exit">Exit</string>
+    <string name="dailogMsgExit">Are you sure you want to exit.!</string>
+
+    <string name="rateApp">Rate App</string>
+    <string name="exitAppMsg">If you like the app, Please take a moment to rate our app on play store.</string>
+    <string name="mDeleteMsg">Are you sure to delete</string>
+    <string name="loading" translatable="false">Loading…</string>
+    <string name="viewFiles">View Files</string>
+
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#80FFFFFF</color>
+    <color name="dot_dark_screen2">#80FFFFFF</color>
+    <color name="dot_dark_screen3">#80FFFFFF</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#FFFFFF</color>
+    <color name="dot_light_screen2">#FFFFFF</color>
+    <color name="dot_light_screen3">#FFFFFF</color>
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+    </array>
+
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+
+    </array>
+
+
+</resources>

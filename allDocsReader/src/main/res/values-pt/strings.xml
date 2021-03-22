@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DocxReader</string>
+
+    <string name="introOneDesc">Wszystkie pliki tekstowe w urządzeniu znajdują się na jednej liście, dzięki czemu można ją łatwo przewijać.</string>
+    <string name="introTwoDesc">Pozwala użytkownikowi zapisywać swoje ulubione pliki oddzielnie w aplikacji.</string>
+    <string name="introThreeDesc">Inteligentna funkcja pozwala użytkownikowi wybrać wiele plików.</string>
+    <string name="ppThanks">Dziękujemy za korzystanie z DOCX Reader! Tutaj opisujemy, w jaki sposób zbieramy, wykorzystujemy i obchodzimy się z Twoimi dokumentami.</string>
+    <string name="ppDesc1">Wszystkie pliki nie są już ukryte w telefonie komórkowym. Ta aplikacja uzyskuje dostęp do wszystkich plików tekstowych w różnych folderach i umieszcza je na liście, aby użytkownik mógł zarządzać wszystkimi plikami na jednym ekranie.</string>
+    <string name="ppDesc2">Aby uzyskać dostęp do wszystkich plików, ta aplikacja potrzebuje uprawnień do przechowywania, które są wymagane do pobierania plików z pamięci wewnętrznej.</string>
+    <string name="dialogMsgFilesFetching">Podczas gdy aplikacja pobiera pliki z pamięci zewnętrznej.</string>
+    <string name="msgDialogPermission">Aby wyświetlać pliki słów, aplikacja potrzebuje uprawnień do przechowywania. \ NZezwól na lepsze wrażenia.</string>
+    <string name="dialogeHead_permAlert">Alert o uprawnieniach.</string>
+    <string name="skip">Pominąć</string>
+    <string name="allow">Dopuszczać</string>
+    <string name="noThanks">Nie, dziękuję</string>
+    <string name="rename_file">Zmień nazwę pliku</string>
+    <string name="delete_file">Usunąć plik</string>
+    <string name="share_file">Udostępnij plik</string>
+    <string name="search">Szukaj</string>
+    <string name="files">Akta</string>
+    <string name="more">Jeszcze</string>
+    <string name="ppHead">Polityka prywatności</string>
+    <string name="delete_msg">Czy jesteś pewien, że chcesz usunąć.</string>
+    <string name="enter_name">Wpisz nową nazwę.</string>
+    <string name="share_app">Udostępnij aplikacje</string>
+    <string name="rate_app">Oceń aplikację</string>
+    <string name="more_apps">Więcej aplikacji</string>
+    <string name="reader">Czytelnik</string>
+    <string name="selectLang">Wybierz język</string>
+    <string name="next">Kolejny</string>
+    <string name="start">Początek</string>
+    <string name="introOneHead">Wszystkie pliki</string>
+    <string name="introTwoHead">Ulubiony</string>
+    <string name="introThreeHead">Wielokrotny wybór</string>
+    <string name="pp_posted">Wysłano: 3 marca 2021 r</string>
+    <string name="ppHead1">Zbieranie dokumentów</string>
+    <string name="ppHead2">Potrzebujesz pozwolenia</string>
+    <string name="ppChecked">Przeczytałem i zrozumiałem.</string>
+    <string name="decline">Upadek</string>
+    <string name="accept">Zaakceptować</string>
+    <string name="no_files_found">Nie znaleziono plików.</string>
+    <string name="noSearchFound">Nie znaleziono takiego pliku</string>
+    <string name="all_files">Wszystkie pliki</string>
+    <string name="recent">Niedawny</string>
+    <string name="fav">Ulubiony</string>
+    <string name="pleasWait">Proszę czekać</string>
+    <string name="dialogMsgRenaming">Zmiana nazwy plików.!</string>
+    <string name="dialogMsgDeleting">Pliki są usuwane.</string>
+    <string name="deleteAlert">Usuń alert!</string>
+    <string name="selectedFiles">wybrane pliki.!</string>
+    <string name="yes">tak</string>
+    <string name="no">Nie</string>
+    <string name="cancel">Anuluj</string>
+    <string name="rename">Przemianować</string>
+    <string name="renameSuccess">Nazwa pliku została pomyślnie zmieniona.</string>
+    <string name="deleteSuccess">Plik został pomyślnie usunięty.</string>
+    <string name="languages">Języki</string>
+    <string name="exit">Wyjście</string>
+    <string name="dailogMsgExit">Czy jesteś pewny że chcesz wyjść.!</string>
+
+    <string name="rateApp">Avalie o aplicativo</string>
+    <string name="exitAppMsg">Se você gosta do aplicativo, reserve um momento para avaliar nosso aplicativo na Play Store.</string>
+    <string name="mDeleteMsg">Você tem certeza que quer deletar</string>
+</resources>

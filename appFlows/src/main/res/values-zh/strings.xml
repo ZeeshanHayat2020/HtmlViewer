@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">appFlows</string>
+
+    <string name="ppHead1">文件收集</string>
+    <string name="ppChecked">我读懂了。</string>
+    <string name="decline">衰退</string>
+    <string name="accept">接受</string>
+    <string name="ppThanks">感谢您使用此应用程序。在这里您可以看到与此应用程序链接的我们的隐私权政策。</string>
+    <string name="ppDesc1">所有文件不再隐藏在您的设备中。 XML和HTML应用程序可帮助您处理存储在设备中的所有文件，提取所有文件并将它们显示在列表中，以便您可以高效，轻松地管理文件。</string>
+    <string name="ppDesc2">为了访问所有文件，此应用需要存储权限，这是从内部存储中检索文件所必需的。</string>
+    <string name="skip">跳过</string>
+    <string name="headIntroOne">阅读XML＆ HTML文件</string>
+    <string name="DescIntroOne">加载您所有的HTML＆设备存储中的XML文件在一个列表中，因此您可以轻松滚动浏览它。</string>
+    <string name="headIntroTwo">最近的文件</string>
+    <string name="descIntroTwo">查看您最近打开的HTML＆应用程式的最新资料夹中的XML档案</string>
+    <string name="headConsetForm">数据保护同意书</string>
+    <string name="descConsentOne">我们关心您的隐私和数据安全。我们通过展示广告来保持这个应用程序的免费</string>
+    <string name="descConsentTwo">我们可以继续使用您的数据为您量身定制广告吗？</string>
+    <string name="descConsentThree">我们的合作伙伴将收集数据并在您的设备上使用唯一的标识符来向您展示广告\ n与新的数据保护和安全服务兼容，我们需要您的同意才能投放为您量身定制的广告。</string>
+    <string name="btnContinue">是的，继续</string>
+    <string name="exit">出口</string>
+    <string name="privacy">隐私</string>
+    <string name="headPrivacy">隐私政策</string>
+    <string name="ppHeadTwo">要求权限</string>
+    <string name="ppDescTwo">要完全体验此应用程序，您需要允许一些有效的应用程序所需的权限。为了获取，修改或删除文件，应用需要访问设备的信息。不用担心收集到的信息将被保密。</string>
+    <string name="ppHeadThree">写外部存储</string>
+    <string name="ppDescThree">应用需要外部存储权限，才能从设备的存储中获取所有文件并将它们显示在单个列表中，以便您只需单击即可查看，删除或共享文件。</string>
+</resources>

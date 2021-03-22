@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".activities.ActivityMyLanguage">
+
+        <include
+            android:id="@+id/toolBar"
+            layout="@layout/layout_custom_toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolBar"
+            android:layout_centerInParent="true"
+            android:overScrollMode="never"
+            android:paddingTop="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_20sdp">
+
+            <LinearLayout
+                android:id="@+id/acLanguageButtonContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acLanguage_btnEnglish"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:background="@drawable/selector_b_b_language"
+                    android:fontFamily="@font/franklin_gothic_medium"
+                    android:text="@string/english"
+                    android:textColor="@color/text_selector_b_language"
+                    android:textSize="@dimen/_13sdp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acLanguage_btnArabic"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:background="@drawable/selector_b_b_language"
+                    android:elevation="@dimen/_10sdp"
+
+                    android:fontFamily="@font/franklin_gothic_medium"
+                    android:text="@string/arabic"
+                    android:textColor="@color/text_selector_b_language"
+                    android:textSize="@dimen/_13sdp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acLanguage_btnChina"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:background="@drawable/selector_b_b_language"
+                    android:elevation="@dimen/_10sdp"
+                    android:fontFamily="@font/franklin_gothic_medium"
+
+                    android:text="@string/chinies"
+                    android:textColor="@color/text_selector_b_language"
+                    android:textSize="@dimen/_13sdp" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acLanguage_btnGerman"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:background="@drawable/selector_b_b_language"
+                    android:elevation="@dimen/_10sdp"
+                    android:fontFamily="@font/franklin_gothic_medium"
+
+                    android:text="@string/german"
+                    android:textColor="@color/text_selector_b_language"
+                    android:textSize="@dimen/_13sdp" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acLanguage_btnIndonesian"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:background="@drawable/selector_b_b_language"
+                    android:elevation="@dimen/_10sdp"
+
+                    android:fontFamily="@font/franklin_gothic_medium"
+                    android:text="@string/indonesian"
+                    android:textColor="@color/text_selector_b_language"
+                    android:textSize="@dimen/_13sdp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acLanguage_btnItalian"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+
+                    android:background="@drawable/selector_b_b_language"
+                    android:elevation="@dimen/_10sdp"
+                    android:fontFamily="@font/franklin_gothic_medium"
+
+                    android:text="@string/italian"
+                    android:textColor="@color/text_selector_b_language"
+                    android:textSize="@dimen/_13sdp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acLanguage_btnPolish"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+
+                    android:background="@drawable/selector_b_b_language"
+                    android:elevation="@dimen/_10sdp"
+                    android:fontFamily="@font/franklin_gothic_medium"
+                    android:text="@string/polish"
+                    android:textColor="@color/text_selector_b_language"
+                    android:textSize="@dimen/_13sdp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acLanguage_btnPortuguese"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+
+                    android:background="@drawable/selector_b_b_language"
+                    android:elevation="@dimen/_10sdp"
+                    android:fontFamily="@font/franklin_gothic_medium"
+                    android:text="@string/portuguese"
+                    android:textColor="@color/text_selector_b_language"
+                    android:textSize="@dimen/_13sdp" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acLanguage_btnRussian"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+
+                    android:background="@drawable/selector_b_b_language"
+                    android:elevation="@dimen/_10sdp"
+                    android:fontFamily="@font/franklin_gothic_medium"
+                    android:text="@string/russian"
+                    android:textColor="@color/text_selector_b_language"
+                    android:textSize="@dimen/_13sdp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acLanguage_btnSpanish"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:background="@drawable/selector_b_b_language"
+                    android:elevation="@dimen/_10sdp"
+                    android:fontFamily="@font/franklin_gothic_medium"
+                    android:text="@string/spanish"
+                    android:textColor="@color/text_selector_b_language"
+                    android:textSize="@dimen/_13sdp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

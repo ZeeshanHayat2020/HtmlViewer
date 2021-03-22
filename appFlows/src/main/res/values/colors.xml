@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#A69DF5</color>
+    <color name="purple_500">#766AE8</color>
+    <color name="purple_700">#766AE8</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#766AE8</color>
+    <color name="colorPrimaryDark">#766AE8</color>
+    <color name="colorAccent">#A69DF5</color>
+    <color name="colorTextPrimary">#787D9D</color>
+    <color name="colorTextPrimaryDark">#5E648A</color>
+
+    <color name="colorHeadingDark">#5B5F7E</color>
+    <color name="grey">#787878</color>
+    <color name="colorPinkWhite">#F5F8FF</color>
+
+    <color name="colorLangGradient0">#00766AE8</color>
+    <color name="colorLangGradient1">#05766AE8</color>
+    <color name="colorLangGradient2">#0A766AE8</color>
+    <color name="colorLangGradient3">#0F766AE8</color>
+    <color name="colorLangGradient4">#14766AE8</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#766AE8</color>
+    <color name="dot_dark_screen2">#766AE8</color>
+    <color name="dot_dark_screen3">#766AE8</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#766AE8</color>
+    <color name="dot_light_screen2">#766AE8</color>
+    <color name="dot_light_screen3">#766AE8</color>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">appFlows</string>
+
+    <string name="ppHead1">Dokumentensammlung</string>
+    <string name="ppChecked">Ich habe gelesen und verstanden.</string>
+    <string name="decline">Ablehnen</string>
+    <string name="accept">Akzeptieren</string>
+    <string name="ppThanks">Vielen Dank für die Verwendung dieser App. Hier sehen Sie unsere Datenschutzrichtlinie, die mit dieser App verknüpft ist.</string>
+    <string name="ppDesc1">Alle Dateien sind nicht mehr auf Ihrem Gerät versteckt. XML &amp; Mit der HTML-App können Sie alle auf Ihrem Gerät gespeicherten Dateien verarbeiten, alle Ihre Dateien abrufen und in einer Liste anzeigen, damit Sie Ihre Dateien effizient und einfach verwalten können.</string>
+    <string name="ppDesc2">Um auf alle Dateien zugreifen zu können, benötigt diese App eine Speicherberechtigung, die zum Abrufen von Dateien aus dem internen Speicher erforderlich ist.</string>
+    <string name="skip">Überspringen</string>
+    <string name="headIntroOne">XML lesen &amp; HTML-Dateien</string>
+    <string name="DescIntroOne">Laden Sie Ihr gesamtes HTML &amp; XML-Dateien aus Ihrem Gerätespeicher in einer einzigen Liste, sodass Sie problemlos durch die Liste scrollen können.</string>
+    <string name="headIntroTwo">Aktuelle Dateien</string>
+    <string name="descIntroTwo">Sehen Sie sich Ihr kürzlich geöffnetes HTML &amp; XML-Dateien hier im letzten Ordner der App</string>
+    <string name="headConsetForm">Einwilligung zum Datenschutz</string>
+    <string name="descConsentOne">Wir kümmern uns um Ihre Privatsphäre und Datensicherheit. Wir halten diese App kostenlos, indem wir Anzeigen schalten</string>
+    <string name="descConsentTwo">Können wir Ihre Daten weiterhin verwenden, um Anzeigen für Sie anzupassen?</string>
+    <string name="descConsentThree">Unser Partner sammelt Daten und verwendet eine eindeutige Kennung auf Ihrem Gerät, um Ihnen Anzeigen zu schalten. \ NInline mit dem neuen Datenschutz- und Sicherheitsdienst benötigen wir Ihre Zustimmung, um auf Sie zugeschnittene Anzeigen zu schalten.</string>
+    <string name="btnContinue">Ja, weiter</string>
+    <string name="exit">Ausgang</string>
+    <string name="privacy">Privatsphäre</string>
+    <string name="headPrivacy">Datenschutz-Bestimmungen</string>
+    <string name="ppHeadTwo">Um Erlaubnis bitten</string>
+    <string name="ppDescTwo">Um diese App vollständig nutzen zu können, müssen Sie einige Berechtigungen zulassen, die erforderlich sind, damit die App effizient funktioniert. Zum Abrufen, Ändern oder Löschen von Dateien benötigt die App Zugriff auf die Geräteinformationen. Keine Sorge, die gesammelten Informationen werden privat gehalten.</string>
+    <string name="ppHeadThree">EXTERNE LAGERUNG SCHREIBEN</string>
+    <string name="ppDescThree">Die App benötigt externe Speicherberechtigungen, um alle Dateien aus dem Speicher Ihres Geräts abzurufen und in einer einzigen Liste anzuzeigen, sodass Sie Dateien mit nur einem Klick anzeigen, löschen oder freigeben können.</string>
+</resources>

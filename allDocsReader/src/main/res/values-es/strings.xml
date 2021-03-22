@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DocxReader</string>
+
+    <string name="introOneDesc">Todos los archivos de Word en su dispositivo en una sola lista para que pueda desplazarse fácilmente por ella.</string>
+    <string name="introTwoDesc">Permite al usuario guardar sus archivos favoritos por separado en la aplicación.</string>
+    <string name="introThreeDesc">Una función inteligente permite al usuario seleccionar varios archivos.</string>
+    <string name="ppThanks">¡Gracias por usar DOCX Reader! A continuación, describimos cómo recopilamos, usamos y manejamos sus documentos.</string>
+    <string name="ppDesc1">Todos los archivos ya no están ocultos en el móvil. Esta aplicación accede a todos los archivos de Word en diferentes carpetas y los coloca en una lista para que el usuario pueda administrar todos los archivos a través de una sola pantalla.</string>
+    <string name="ppDesc2">Para acceder a todos los archivos, esta aplicación necesita un permiso de almacenamiento que se requiere para recuperar archivos del almacenamiento interno.</string>
+    <string name="dialogMsgFilesFetching">Mientras la aplicación recupera archivos del almacenamiento externo.</string>
+    <string name="msgDialogPermission">Para mostrar archivos de Word, la aplicación necesita permisos de almacenamiento. \ NPermitir para una mejor experiencia.</string>
+    <string name="dialogeHead_permAlert">Alerta de permiso.</string>
+    <string name="skip">Saltar</string>
+    <string name="allow">Permitir</string>
+    <string name="noThanks">No, gracias</string>
+    <string name="rename_file">Renombrar archivo</string>
+    <string name="delete_file">Borrar archivo</string>
+    <string name="share_file">Recurso compartido de archivos</string>
+    <string name="search">Buscar</string>
+    <string name="files">Archivos</string>
+    <string name="more">Más</string>
+    <string name="ppHead">Política de privacidad</string>
+    <string name="delete_msg">Estas seguro que quieres borrarlo.</string>
+    <string name="enter_name">Ingrese nuevo nombre.</string>
+    <string name="share_app">Compartir aplicación</string>
+    <string name="rate_app">Calificar aplicacion</string>
+    <string name="more_apps">Más aplicaciones</string>
+    <string name="reader">Lector</string>
+    <string name="selectLang">Seleccione el idioma</string>
+    <string name="next">Próximo</string>
+    <string name="start">Comienzo</string>
+    <string name="introOneHead">Todos los archivos</string>
+    <string name="introTwoHead">Favorito</string>
+    <string name="introThreeHead">Selección múltiple</string>
+    <string name="pp_posted">Publicado: 3 de marzo de 2021</string>
+    <string name="ppHead1">Colección de documentos</string>
+    <string name="ppHead2">Necesita permiso</string>
+    <string name="ppChecked">Leí y entendí.</string>
+    <string name="decline">Disminución</string>
+    <string name="accept">Aceptar</string>
+    <string name="no_files_found">No se encontraron archivos.</string>
+    <string name="noSearchFound">No se ha encontrado ningún archivo de este tipo</string>
+    <string name="all_files">Todos los archivos</string>
+    <string name="recent">Reciente</string>
+    <string name="fav">Favorito</string>
+    <string name="pleasWait">Espere por favor</string>
+    <string name="dialogMsgRenaming">Los archivos están cambiando de nombre.!</string>
+    <string name="dialogMsgDeleting">Se están eliminando archivos.</string>
+    <string name="deleteAlert">Eliminar alerta!</string>
+    <string name="selectedFiles">archivos seleccionados.!</string>
+    <string name="yes">sí</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancelar</string>
+    <string name="rename">Rebautizar</string>
+    <string name="renameSuccess">Archivo renombrado correctamente.</string>
+    <string name="deleteSuccess">Archivo eliminado correctamente.</string>
+    <string name="languages">Idiomas</string>
+    <string name="exit">Salida</string>
+    <string name="dailogMsgExit">Seguro que quieres salir.!</string>
+
+    <string name="rateApp">Calificar aplicacion</string>
+    <string name="exitAppMsg">Si le gusta la aplicación, tómese un momento para calificar nuestra aplicación en Play Store.</string>
+    <string name="mDeleteMsg">¿Estás seguro de eliminar?</string>
+</resources>

@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">appFlows</string>
+
+
+    <string name="english" translatable="false">English</string>
+    <string name="arabic" translatable="false">عربى</string>
+    <string name="chinies" translatable="false">中文</string>
+    <string name="france" translatable="false">Française</string>
+    <string name="german" translatable="false">Keim</string>
+    <string name="indonesian" translatable="false">bahasa Indonesia</string>
+    <string name="italian" translatable="false">Italiana</string>
+    <string name="polish" translatable="false">Polskie</string>
+    <string name="portuguese" translatable="false">portuguesa</string>
+    <string name="russian" translatable="false">русский</string>
+    <string name="spanish" translatable="false">española</string>
+    <string name="privacy_policy_linkText" translatable="false">
+        <![CDATA[<a href="">https://sites.google.com/view/htmlxmlviewer-fileopenerandrea/home</a>
+]]></string>
+    <string name="privacy_policy_URL" translatable="false">https://sites.google.com/view/htmlxmlviewer-fileopenerandrea/home</string>
+
+
+    <string name="ppHead1">Document Collection</string>
+    <string name="ppChecked">I Read and Understood.</string>
+    <string name="decline">Decline</string>
+    <string name="accept">Accept</string>
+    <string name="ppThanks">Thanks for using this app. Here you can see our privacy policy linked with this app.</string>
+    <string name="ppDesc1">All files are no longer hidden in your device. XML &amp; HTML app helps you to handle all your files stored in your device, fetch all your files and display them in a list so that you can manage your files efficiently and easily.</string>
+    <string name="ppDesc2">In order to access all files, this app needs storage permission which is required to retrieve files from internal storage.</string>
+    <string name="skip">Skip</string>
+    <string name="headIntroOne">Read XML &amp; HTML Files</string>
+    <string name="DescIntroOne">CDATA[Load all your HTML &amp; XML files from your device storage in a single list so that you can easily scroll through it.</string>
+    <string name="headIntroTwo">Recent Files</string>
+    <string name="descIntroTwo">See your recently opened HTML &amp; XML files here in app\'s recent folder</string>
+    <string name="headConsetForm">Data Protection Consent</string>
+    <string name="descConsentOne">We care about your privacy and data security. We keep this app free by showing ads</string>
+    <string name="descConsentTwo">Can we continue to use your data to tailor ads for you?</string>
+    <string name="descConsentThree">Our partner will collect data and use a unique identifier on your device to show you ads\nInline with new Data protection and Security Service, We need your consent to serve ads tailored for you.</string>
+    <string name="btnContinue">Yes, Continue</string>
+    <string name="exit">Exit</string>
+    <string name="privacy">Privacy</string>
+    <string name="headPrivacy">Privacy Policy</string>
+    <string name="ppHeadTwo">Request Permission</string>
+    <string name="ppDescTwo">To fully experience this app you need to allow some permissions which is required for app to work efficiently. In order to fetch, modify or delete files app needs access to device\'s information. Don\'t worry the information collected will be kept private.</string>
+    <string name="ppHeadThree">WRITE EXTERNAL STORAGE</string>
+    <string name="ppDescThree">App needs external storage permissions to fetch all files from your device\'s storage and to display them in a single list so that you can view, delete or share files by just a single click..</string>
+    <string name="furthurInfo" translatable="false">For Further details about how this app handles these permissions, please visit the privacy policy at below link.</string>
+
+
+</resources>

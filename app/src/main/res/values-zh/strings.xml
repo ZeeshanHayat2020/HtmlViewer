@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HtmlViewer</string>
+
+    <string name="noFilesFound">找不到文件</string>
+    <string name="headDialogPermission">需要许可</string>
+    <string name="mainHeadOne">HTML查看器和 编辑</string>
+    <string name="mainHeadTwo">查看HTML＆amp; XML文件</string>
+    <string name="mainHeadThree">查看您所有的html＆ xml文件。轻松编辑文件</string>
+    <string name="attach">附</string>
+    <string name="htmlFiles">HTML文件</string>
+    <string name="xmlFiles">XML文件</string>
+    <string name="recentFiles">最近的文件</string>
+    <string name="htmViewer">HTML \nViewer</string>
+    <string name="xmlViewer">XML \nViewer</string>
+    <string name="recetnViewer">最近\n查看器</string>
+    <string name="splashHeadOne">查看器和编辑器</string>
+    <string name="splashDesc">查看和编辑HTML文件</string>
+</resources>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DocxReader</string>
+
+    <string name="introOneDesc">您设备中的所有Word文件都在一个列表中，因此您可以轻松滚动浏览它。</string>
+    <string name="introTwoDesc">允许用户将自己喜欢的文件分别保存在应用程序中。</string>
+    <string name="introThreeDesc">一项智能功能允许用户选择多个文件。</string>
+    <string name="ppThanks">感谢您使用DOCX Reader！在这里，我们描述了我们如何收集，使用和处理您的文档。</string>
+    <string name="ppDesc1">所有文件都不再隐藏在移动设备中。该应用程序访问不同文件夹中的所有word文件，并将它们放入列表中，以便用户可以通过单个屏幕管理所有文件。</string>
+    <string name="ppDesc2">为了访问所有文件，此应用需要存储权限，这是从内部存储中检索文件所必需的。</string>
+    <string name="dialogMsgFilesFetching">当应用从外部存储中检索文件时。</string>
+    <string name="msgDialogPermission">要显示单词文件，应用程序需要存储权限。\ n为了获得更好的体验，请允许。</string>
+    <string name="dialogeHead_permAlert">权限警报。</string>
+    <string name="skip">跳过</string>
+    <string name="allow">允许</string>
+    <string name="noThanks">不用了，谢谢</string>
+    <string name="rename_file">重新命名文件</string>
+    <string name="delete_file">删除文件</string>
+    <string name="share_file">共享文件</string>
+    <string name="search">搜索</string>
+    <string name="files">档案文件</string>
+    <string name="more">更多的</string>
+    <string name="ppHead">隐私政策</string>
+    <string name="delete_msg">你确定你要删除。</string>
+    <string name="enter_name">输入新名称。</string>
+    <string name="share_app">共享应用</string>
+    <string name="rate_app">评价应用</string>
+    <string name="more_apps">更多应用程序</string>
+    <string name="reader">读者</string>
+    <string name="selectLang">选择语言</string>
+    <string name="next">下一个</string>
+    <string name="start">开始</string>
+    <string name="introOneHead">所有的文件</string>
+    <string name="introTwoHead">最喜欢的</string>
+    <string name="introThreeHead">多选</string>
+    <string name="pp_posted">发表于：2021年3月3日</string>
+    <string name="ppHead1">文件收集</string>
+    <string name="ppHead2">需要许可</string>
+    <string name="ppChecked">我读懂了。</string>
+    <string name="decline">衰退</string>
+    <string name="accept">接受</string>
+    <string name="no_files_found">找不到文件。</string>
+    <string name="noSearchFound">找不到这样的文件</string>
+    <string name="all_files">所有的文件</string>
+    <string name="recent">最近的</string>
+    <string name="fav">最喜欢的</string>
+    <string name="pleasWait">请稍等</string>
+    <string name="dialogMsgRenaming">文件正在重命名。</string>
+    <string name="dialogMsgDeleting">文件正在删除。</string>
+    <string name="deleteAlert">删除警报！</string>
+    <string name="selectedFiles">选定的文件。</string>
+    <string name="yes">是的</string>
+    <string name="no">不</string>
+    <string name="cancel">取消</string>
+    <string name="rename">改名</string>
+    <string name="renameSuccess">文件重命名成功。</string>
+    <string name="deleteSuccess">文件已成功删除。</string>
+    <string name="languages">语言能力</string>
+    <string name="exit">出口</string>
+    <string name="dailogMsgExit">你确定要离开。！</string>
+
+    <string name="rateApp">评价应用</string>
+    <string name="exitAppMsg">如果您喜欢该应用，请花一点时间在Play商店中对我们的应用进行评分。</string>
+    <string name="mDeleteMsg">您确定要删除吗</string>
+</resources>

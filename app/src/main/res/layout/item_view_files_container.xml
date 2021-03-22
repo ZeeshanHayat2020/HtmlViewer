@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.zapps.html.xml.viewer.file.reader.models.ModelFiles" />
+
+        <variable
+            name="itemClickListener"
+            type="com.zapps.html.xml.viewer.file.reader.interfaces.OnRecyclerItemClickLister" />
+
+        <variable
+            name="viewHolder"
+            type="com.zapps.html.xml.viewer.file.reader.adapters.AdapterFilesContainer.ViewHolder" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_57sdp"
+        android:layout_marginLeft="@dimen/_4sdp"
+        android:layout_marginRight="@dimen/_4sdp"
+        android:background="@drawable/shape_b_item_view_files"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="@drawable/ripple_effect_primary_dark_flat"
+        android:onClick="@{()-> itemClickListener.onItemClicked(viewHolder,model)}"
+        app:onLongClickListener="@{() -> itemClickListener.onItemLongClicked(model)}">
+
+
+        <ImageView
+            android:id="@+id/iv_file"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:src="@drawable/ic_sv_file_icon"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_toStartOf="@+id/checkBox_multiSelect"
+            android:layout_toEndOf="@+id/iv_file"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_fileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{model.fileName}"
+                android:textColor="@color/colorTextPrimaryDark"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tv_fileSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{model.fileSize}"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btn_itemMenu"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="@drawable/ripple_effect_primary_dark_circle"
+            android:onClick="@{(view)->itemClickListener.onItemMenuClick(view, model)}"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_more"
+            android:visibility="visible" />
+
+        <CheckBox
+            android:id="@+id/checkBox_multiSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:buttonTint="@color/colorAccent"
+            android:onClick="@{(view) -> itemClickListener.onItemCheckBoxClicked(view, model)}"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+
+</layout>

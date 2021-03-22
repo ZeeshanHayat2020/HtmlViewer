@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HtmlViewer</string>
+
+    <string name="noFilesFound">Tidak Ada File yang Ditemukan</string>
+    <string name="headDialogPermission">Butuh Izin</string>
+    <string name="mainHeadOne">Penampil HTML &amp; Editor</string>
+    <string name="mainHeadTwo">Lihat HTML &amp; File XML</string>
+    <string name="mainHeadThree">Lihat semua file html &amp; xml. Edit file dengan mudah</string>
+    <string name="attach">Melampirkan</string>
+    <string name="htmlFiles">File HTML</string>
+    <string name="xmlFiles">File XML</string>
+    <string name="recentFiles">File Terbaru</string>
+    <string name="htmViewer">HTML \nPenampil</string>
+    <string name="xmlViewer">XML \nPenampil</string>
+    <string name="recetnViewer">Pemirsa \n baru-baru ini</string>
+    <string name="splashHeadOne">Penampil &amp; Editor</string>
+    <string name="splashDesc">Lihat dan Edit File Html</string>
+</resources>

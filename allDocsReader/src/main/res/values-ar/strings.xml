@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DocxReader</string>
+
+    <string name="introOneDesc">جميع ملفات الكلمات الموجودة في جهازك في قائمة واحدة بحيث يمكنك التمرير خلالها بسهولة.</string>
+    <string name="introTwoDesc">يسمح للمستخدم بحفظ ملفاته المفضلة بشكل منفصل في التطبيق.</string>
+    <string name="introThreeDesc">ميزة ذكية تسمح للمستخدم بتحديد ملفات متعددة.</string>
+    <string name="ppThanks">شكرًا لاستخدامك قارئ DOCX! نحن هنا نصف كيف نجمع مستنداتك ونستخدمها ونتعامل معها.</string>
+    <string name="ppDesc1">لم تعد جميع الملفات مخفية في الهاتف المحمول. يصل هذا التطبيق إلى جميع ملفات الكلمات في مجلدات مختلفة ويضعها في قائمة حتى يتمكن المستخدم من إدارة جميع الملفات من خلال شاشة واحدة.</string>
+    <string name="ppDesc2">من أجل الوصول إلى جميع الملفات ، يحتاج هذا التطبيق إلى إذن تخزين مطلوب لاسترداد الملفات من وحدة التخزين الداخلية.</string>
+    <string name="dialogMsgFilesFetching">أثناء قيام التطبيق باسترداد الملفات من وحدة التخزين الخارجية.</string>
+    <string name="msgDialogPermission">لإظهار ملفات Word ، يحتاج التطبيق إلى أذونات تخزين. \ n السماح بتجربة أفضل.</string>
+    <string name="dialogeHead_permAlert">تنبيه الإذن.</string>
+    <string name="skip">تخطى</string>
+    <string name="allow">يسمح</string>
+    <string name="noThanks">لا شكرا</string>
+    <string name="rename_file">إعادة تسمية الملف</string>
+    <string name="delete_file">حذف ملف</string>
+    <string name="share_file">مشاركة الملفات</string>
+    <string name="search">بحث</string>
+    <string name="files">الملفات</string>
+    <string name="more">أكثر</string>
+    <string name="ppHead">سياسة خاصة</string>
+    <string name="delete_msg">هل أنت متأكد أنك تريد حذف.</string>
+    <string name="enter_name">أدخل اسمًا جديدًا.</string>
+    <string name="share_app">شارك التطبيق</string>
+    <string name="rate_app">قيم التطبيق</string>
+    <string name="more_apps">تطبيقات أكثر</string>
+    <string name="reader">قارئ</string>
+    <string name="selectLang">اختار اللغة</string>
+    <string name="next">التالي</string>
+    <string name="start">بداية</string>
+    <string name="introOneHead">كل الملفات</string>
+    <string name="introTwoHead">المفضل</string>
+    <string name="introThreeHead">تحديد متعدد</string>
+    <string name="pp_posted">تم النشر: 3 مارس 2021</string>
+    <string name="ppHead1">جمع الوثائق</string>
+    <string name="ppHead2">تحتاج إذن</string>
+    <string name="ppChecked">قرأت وفهمت.</string>
+    <string name="decline">انخفاض</string>
+    <string name="accept">قبول</string>
+    <string name="no_files_found">لا توجد ملفات.</string>
+    <string name="noSearchFound">لم يتم العثور على مثل هذا الملف</string>
+    <string name="all_files">كل الملفات</string>
+    <string name="recent">مؤخرا</string>
+    <string name="fav">المفضل</string>
+    <string name="pleasWait">انتظر من فضلك</string>
+    <string name="dialogMsgRenaming">يتم إعادة تسمية الملفات.!</string>
+    <string name="dialogMsgDeleting">يتم حذف الملفات.</string>
+    <string name="deleteAlert">حذف التنبيه!</string>
+    <string name="selectedFiles">الملفات المختارة.!</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="cancel">يلغي</string>
+    <string name="rename">إعادة تسمية</string>
+    <string name="renameSuccess">تمت إعادة تسمية الملف بنجاح.</string>
+    <string name="deleteSuccess">تم حذف الملف بنجاح.</string>
+    <string name="languages">اللغات</string>
+    <string name="exit">مخرج</string>
+    <string name="dailogMsgExit">هل أنت متأكد أنك تريد الخروج.!</string>
+
+    <string name="rateApp">قيم التطبيق</string>
+    <string name="exitAppMsg">إذا أعجبك التطبيق ، فالرجاء تخصيص بعض الوقت لتقييم تطبيقنا على متجر الألعاب.</string>
+    <string name="mDeleteMsg">هل انت متأكد من الحذف</string>
+</resources>
