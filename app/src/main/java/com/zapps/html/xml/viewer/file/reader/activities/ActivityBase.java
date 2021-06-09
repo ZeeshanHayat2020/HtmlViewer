@@ -15,6 +15,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,6 +27,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.facebook.ads.InterstitialAdListener;
 import com.zapps.html.xml.viewer.file.reader.R;
 import com.zapps.appsFlowModule.activities.ActivityAppsFlowBase;
 import com.zapps.appsFlowModule.contstants.Constant;
@@ -44,12 +46,13 @@ import com.google.android.play.core.tasks.OnSuccessListener;
 
 
 public class ActivityBase extends ActivityAppsFlowBase {
+
+    private String TAG = this.getClass().getName();
     public InterstitialAd mInterstitialAd;
+    public com.facebook.ads.InterstitialAd mFacebookIntersAd;
     private AdView adView;
     private AppUpdateManager appUpdateManager;
-
     private ProgressDialog progressDialog;
-
 
     @Override
     protected void onStart() {
@@ -113,13 +116,22 @@ public class ActivityBase extends ActivityAppsFlowBase {
                 }
             }
         });
-
     }
 
     public void reqNewInterstitial(Context context) {
         mInterstitialAd = new InterstitialAd(context);
         mInterstitialAd.setAdUnitId(context.getResources().getString(R.string.interstitial_Id));
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+    }
+
+    public void reqNewFacebookInterstitial(InterstitialAdListener mFbAdListener, int whichId) {
+        String[] placementIds = {this.getString(R.string.id_fb_interstitial_01), this.getString(R.string.id_fb_interstitial_02), this.getString(R.string.id_fb_interstitial_03)};
+        mFacebookIntersAd = new com.facebook.ads.InterstitialAd(this, placementIds[whichId]);
+        mFacebookIntersAd.loadAd(
+                mFacebookIntersAd.buildLoadAdConfig()
+                        .withAdListener(mFbAdListener)
+                        .build());
     }
 
     public void requestBanner(FrameLayout bannerContainer) {
@@ -133,7 +145,6 @@ public class ActivityBase extends ActivityAppsFlowBase {
         AdRequest adRequest =
                 new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                         .build();
-
         AdSize adSize = getAdSize();
         adView.setAdSize(adSize);
         adView.loadAd(adRequest);
@@ -218,13 +229,15 @@ public class ActivityBase extends ActivityAppsFlowBase {
     }
 
     public void showProgressDialog() {
-        if (progressDialog != null)
+        if (progressDialog != null && !progressDialog.isShowing()) {
             progressDialog.show();
+        }
     }
 
     public void hideProgressDialog() {
-        if (progressDialog != null)
+        if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
+        }
     }
 
     public void showToast(String message) {
@@ -245,47 +258,6 @@ public class ActivityBase extends ActivityAppsFlowBase {
         startActivityForResult(intent, Constant.REQUEST_CODE_ATTACH_FILE);
     }
 
-    public void dialogExitFile() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ActivityBase.this, R.style.mTheme_Dialog);
-        builder.setTitle(R.string.exit);
-        builder.setMessage(R.string.dailogMsgExit);
-        builder.setNegativeButton(R.string.no,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        dialog.dismiss();
-
-                    }
-                });
-        builder.setPositiveButton(R.string.yes,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        if (mInterstitialAd != null) {
-                            if (mInterstitialAd.isLoaded()) {
-                                mInterstitialAd.show();
-                                AppOpenManager.isInterstitialShowing = true;
-                                mInterstitialAd.setAdListener(new AdListener() {
-                                    @Override
-                                    public void onAdClosed() {
-                                        finish();
-                                        reqNewInterstitial(ActivityBase.this);
-                                    }
-                                });
-                            } else {
-                                finish();
-                            }
-                        } else {
-                            finish();
-                        }
-                    }
-                });
-
-
-        builder.show();
-    }
-
-
     public void dialogExitApp() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ActivityBase.this, R.style.mTheme_Dialog);
         builder.setTitle(R.string.rateApp);
@@ -294,23 +266,7 @@ public class ActivityBase extends ActivityAppsFlowBase {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
                                         int which) {
-
-                        if (mInterstitialAd.isLoaded()) {
-                            mInterstitialAd.show();
-                            AppOpenManager.isInterstitialShowing = true;
-                            mInterstitialAd.setAdListener(new AdListener() {
-                                @Override
-                                public void onAdClosed() {
-                                    super.onAdClosed();
-                                    AppOpenManager.isInterstitialShowing = false;
-                                    finish();
-
-                                }
-                            });
-                        } else {
-                            finish();
-                        }
-
+                        finishAffinity();
                     }
                 });
         builder.setPositiveButton(R.string.rateApp,
@@ -337,7 +293,6 @@ public class ActivityBase extends ActivityAppsFlowBase {
 
         builder.show();
     }
-
 
     public boolean haveNetworkConnection() {
         boolean haveConnectedWifi = false;

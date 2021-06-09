@@ -76,8 +76,7 @@ public class TXTEncodingDialog extends ADialog
     public void init(Context context)
     {
         // 编码列表
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,
-            android.R.layout.simple_spinner_item, ENCODING_ITEMS);        
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, ENCODING_ITEMS);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner = new Spinner(context);
         spinner.setAdapter(adapter);

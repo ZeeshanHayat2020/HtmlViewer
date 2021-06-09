@@ -12,12 +12,23 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.InterstitialAdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.LoadAdError;
+import com.zapps.docsReaderModule.utils.TaskRetrievePath;
 import com.zapps.html.xml.viewer.file.reader.R;
 import com.zapps.docsReaderModule.constant.DocsReaderConstant;
 import com.zapps.appsFlowModule.contstants.Constant;
 import com.zapps.html.xml.viewer.file.reader.adapters.AdapterMainCardMainCardsPager;
+import com.zapps.html.xml.viewer.file.reader.appUtils.MyUtils;
 import com.zapps.html.xml.viewer.file.reader.databinding.ActivityMainBinding;
 import com.zapps.html.xml.viewer.file.reader.interfaces.OnClickMainCardFilesListener;
 import com.zapps.docsReaderModule.officereader.ActivityDocumentReader;
@@ -25,6 +36,7 @@ import com.zapps.html.xml.viewer.file.reader.appUtils.FileUtils;
 import com.zapps.html.xml.viewer.file.reader.models.ModelMainCards;
 import com.zapps.html.xml.viewer.file.reader.popupWindows.PopUpWidowMainMenu;
 import com.zapps.html.xml.viewer.file.reader.appUtils.AppOpenManager;
+import com.zapps.html.xml.viewer.file.reader.popupWindows.ProgressDialogTransparent;
 import com.zapps.html.xml.viewer.file.reader.views.FragmentMainCards;
 import com.zapps.html.xml.viewer.file.reader.views.TransformerMainCards;
 import com.google.android.gms.ads.AdListener;
@@ -38,6 +50,8 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
     private AdapterMainCardMainCardsPager pagerAdapter;
     private PopUpWidowMainMenu widowMainMenu;
     private String[] itemNames;
+    private Intent intent = null;
+    private ProgressDialogTransparent transparentBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +59,7 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
         setStatusBarGradient(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         reqNewInterstitial(ActivityMain.this);
+        initInterstitialListeners();
         if (!hasStoragePermission()) {
             permissionDialog(getString(R.string.msgDialogPermission));
         }
@@ -52,11 +67,29 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
         widowMainMenu = new PopUpWidowMainMenu(ActivityMain.this, mInterstitialAd);
         binding.btnMenu.setOnClickListener(onClickMenuButton);
         binding.btnAttachFile.setOnClickListener(onClickMenuButton);
+        transparentBar = new ProgressDialogTransparent(this, 0, this);
+        setUpInAppUpdate();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (haveNetworkConnection()) {
+            checkForUpdate();
+        }
     }
 
     @Override
     public void onBackPressed() {
-        dialogExitApp();
+        if (widowMainMenu != null && widowMainMenu.getPopupWindow() != null) {
+            if (widowMainMenu.getPopupWindow().isShowing()) {
+                widowMainMenu.hideMenu();
+            } else {
+                dialogExitApp();
+            }
+        } else {
+            dialogExitApp();
+        }
     }
 
     private void setUpCardsViewPager() {
@@ -99,8 +132,8 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
     }
 
     private void intentOnItemClick2(String buttonName) {
-        final Intent intent = new Intent(ActivityMain.this, ActivityFilesContainer.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent = new Intent(ActivityMain.this, ActivityFilesContainer.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         if (buttonName.equals(itemNames[0])) {
             intent.putExtra(Constant.KEY_INTENT_ACTIVITY_CALL, String.valueOf(ActivityCall.HTML_FILE));
         } else if (buttonName.equals(itemNames[1])) {
@@ -108,7 +141,8 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
         } else if (buttonName.equals(itemNames[2])) {
             intent.putExtra(Constant.KEY_INTENT_ACTIVITY_CALL, String.valueOf(ActivityCall.RECENT_FILES));
         }
-        if (mInterstitialAd != null) {
+        showInterstitialAd(intent);
+  /*      if (mInterstitialAd != null) {
             if (mInterstitialAd.isLoaded()) {
                 mInterstitialAd.show();
                 AppOpenManager.isInterstitialShowing = true;
@@ -129,7 +163,7 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
                     startActivity(intent);
                 }
             }
-        }
+        }*/
     }
 
     private View.OnClickListener onClickMenuButton = new View.OnClickListener() {
@@ -145,9 +179,86 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
                 }
                 break;
             }
-
         }
     };
+
+    private void initInterstitialListeners() {
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                reqNewFacebookInterstitial(intiFacebookAdListeners(), 0);
+
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                AppOpenManager.isInterstitialShowing = false;
+                reqNewInterstitial(ActivityMain.this);
+                initInterstitialListeners();
+                if (intent != null)
+                    startActivity(intent);
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                AppOpenManager.isInterstitialShowing = true;
+            }
+        });
+    }
+
+    private InterstitialAdListener intiFacebookAdListeners() {
+        return new InterstitialAdListener() {
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+                Log.d(TAG, "onError: FaceBook Error");
+                reqNewInterstitial(ActivityMain.this);
+                initInterstitialListeners();
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+
+            }
+
+            @Override
+            public void onInterstitialDisplayed(Ad ad) {
+                AppOpenManager.isInterstitialShowing = true;
+            }
+
+            @Override
+            public void onInterstitialDismissed(Ad ad) {
+                AppOpenManager.isInterstitialShowing = false;
+                reqNewFacebookInterstitial(intiFacebookAdListeners(), 1);
+                if (intent != null) {
+                    startActivity(intent);
+                }
+            }
+        };
+    }
+
+    private void showInterstitialAd(Intent intent) {
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        } else if (mFacebookIntersAd != null && mFacebookIntersAd.isAdLoaded() && !mFacebookIntersAd.isAdInvalidated()) {
+            mFacebookIntersAd.show();
+        } else {
+            startActivity(intent);
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(final int requestCode,
@@ -180,7 +291,6 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
         }
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -198,7 +308,7 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
             break;
             case Constant.REQUEST_CODE_ATTACH_FILE: {
                 if (RESULT_OK == resultCode) {
-                    Uri uri = data.getData();
+               /*     Uri uri = data.getData();
                     String filePath = "";
                     filePath = FileUtils.getPath(ActivityMain.this, uri);
                     if (!filePath.equals("")) {
@@ -207,13 +317,38 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
                         intent.putExtra(DocsReaderConstant.KEY_INTENT_SELECTED_FILE_PATH, filePath);
                         startActivity(intent);
                     }
+*/
+                    String filePath = "";
+                    Uri tempUri = data.getData();
+                    if (tempUri != null) {
+                        TaskRetrievePath taskRetrievePath = new TaskRetrievePath(ActivityMain.this, tempUri);
+                        Thread thread = new Thread(taskRetrievePath);
+                        thread.start();
+                        try {
+                            thread.join();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        filePath = taskRetrievePath.getFilePath();
+                        final Intent intent = new Intent(ActivityMain.this, ActivityDocumentReader.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        if (filePath == null) {
+                            filePath = FileUtils.getPath(ActivityMain.this, tempUri);
+                        } else if (filePath.equals("")) {
+                            filePath = FileUtils.getPath(ActivityMain.this, tempUri);
+                        } else if (TextUtils.isEmpty(filePath)) {
+                            filePath = FileUtils.getPath(ActivityMain.this, tempUri);
+                        }
+                        intent.putExtra(DocsReaderConstant.KEY_INTENT_SELECTED_FILE_PATH, filePath);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(this, "Sorry, Can't open file.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
             break;
             case Constant.REQUEST_INTENT_TO_PERMISSION_SETTING: {
-
-                if (hasStoragePermission()) {
-                } else {
+                if (!hasStoragePermission()) {
                     permissionDialog(getString(R.string.msgDialogPermission));
                 }
             }
@@ -225,9 +360,39 @@ public class ActivityMain extends ActivityBase implements OnClickMainCardFilesLi
     @Override
     public void onClick(View v, String fileName) {
         if (hasStoragePermission()) {
+            transparentBar.show();
             intentOnItemClick2(fileName);
         } else {
             permissionDialog(getString(R.string.msgDialogPermission));
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        if (mFacebookIntersAd != null) {
+            mFacebookIntersAd.destroy();
+        }
+        if (mInterstitialAd != null) {
+            mInterstitialAd = null;
+        }
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (transparentBar != null && transparentBar.isShowing()) {
+            transparentBar.dismiss();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        transparentBar.dismiss();
+        if (intent != null) {
+            intent = null;
+        }
+    }
+
 }

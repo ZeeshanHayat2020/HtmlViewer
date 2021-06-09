@@ -6,16 +6,15 @@
     <string name="headDialogPermission">تحتاج إذن</string>
     <string name="mainHeadOne">عارض ومحرر HTML</string>
     <string name="mainHeadTwo">عرض ملفات HTML و XML</string>
-    <string name="mainHeadThree">اعرض جميع ملفات html و xml الخاصة بك. \ n قم بتحرير الملفات بسهولة</string>
+    <string name="mainHeadThree">اعرض جميع ملفات html و xml الخاصة بك. \n قم بتحرير الملفات بسهولة</string>
     <string name="attach">يربط</string>
     <string name="htmlFiles">ملفات HTML</string>
     <string name="xmlFiles">ملفات XML</string>
     <string name="recentFiles">الملفات الأخيرة</string>
-    <string name="htmViewer">عارض"
-        "HTML</string>
-    <string name="xmlViewer">عارض XML \ n</string>
-    <string name="recetnViewer">عارض \ n حديث</string>
-    <string name="splashHeadOne">عارض ومحرر</string>
-    <string name="splashDesc">عرض وتحرير ملفات Html</string>
+    <string name="htmViewer">عارض HTML</string>
+    <string name="xmlViewer">عارض XML \n</string>
+    <string name="recetnViewer">عارض \n حديث</string>
+    <string name="splashHeadOne">عارض و محرر</string>
+    <string name="splashDesc">عرض و تحرير ملفات Html</string>
 
 </resources>

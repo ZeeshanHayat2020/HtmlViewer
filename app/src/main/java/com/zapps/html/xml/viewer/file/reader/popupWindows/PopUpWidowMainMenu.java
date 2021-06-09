@@ -2,6 +2,7 @@ package com.zapps.html.xml.viewer.file.reader.popupWindows;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -37,6 +38,10 @@ public class PopUpWidowMainMenu implements MyOnClickListener {
     private PopupWindow popupWindow;
     private ObjectAnimator animFadeInWindow;
     private ObjectAnimator animFadeOutWindow;
+
+    private AnimatorSet animatorOpenMenu;
+    private AnimatorSet animatorCloseMenu;
+
     private InterstitialAd interstitialAd;
 
     public PopUpWidowMainMenu(Context context, InterstitialAd interstitialAd) {
@@ -47,6 +52,8 @@ public class PopUpWidowMainMenu implements MyOnClickListener {
         binding.setClickHandler(this::onClick);
         animFadeInWindow = animFadeInToShowWindow(binding.getRoot());
         animFadeOutWindow = animFadeOutToHideWindow(binding.getRoot());
+        animatorOpenMenu = animOpenMainMenu(binding.rootView);
+        animatorCloseMenu = animCloseMainMenu(binding.rootView);
         int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.MATCH_PARENT;
         boolean focusable = false;
@@ -58,17 +65,20 @@ public class PopUpWidowMainMenu implements MyOnClickListener {
         if (!popupWindow.isShowing()) {
             popupWindow.showAtLocation(view, Gravity.LEFT | Gravity.TOP, 0, 0);
             animFadeInWindow.start();
-            AnimUtils.animOpenMainMenu(binding.rootView);
+            animatorOpenMenu.start();
         }
     }
 
     public void hideMenu() {
         if (popupWindow.isShowing()) {
-            AnimUtils.animCloseMainMenu(binding.rootView);
+            animatorCloseMenu.start();
             animFadeOutWindow.start();
         }
     }
 
+    public PopupWindow getPopupWindow() {
+        return popupWindow;
+    }
 
     public ObjectAnimator animFadeInToShowWindow(View view) {
         ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(view, View.ALPHA, 0f, 1f);
@@ -89,6 +99,30 @@ public class PopUpWidowMainMenu implements MyOnClickListener {
             }
         });
         return fadeAnim;
+    }
+
+    public AnimatorSet animOpenMainMenu(View view) {
+        ObjectAnimator translateYAnimator = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, -view.getLayoutParams().height, 0);
+        translateYAnimator.setDuration(300);
+        ObjectAnimator translateXAnimator = ObjectAnimator.ofFloat(view, View.TRANSLATION_X, -view.getLayoutParams().width, 0);
+        translateXAnimator.setDuration(300);
+        ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(view, View.ALPHA, 0.5f, 1f);
+        fadeAnim.setDuration(200);
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(translateYAnimator, translateXAnimator, fadeAnim);
+        return set;
+    }
+
+    public AnimatorSet animCloseMainMenu(View view) {
+        ObjectAnimator translateYAnimator = ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, 0, -view.getLayoutParams().height);
+        translateYAnimator.setDuration(200);
+        ObjectAnimator translateXAnimator = ObjectAnimator.ofFloat(view, View.TRANSLATION_X, 0, -view.getLayoutParams().width);
+        translateXAnimator.setDuration(200);
+        ObjectAnimator fadeAnim = ObjectAnimator.ofFloat(view, View.ALPHA, 1f, 0.5f);
+        fadeAnim.setDuration(300);
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(translateXAnimator, translateYAnimator, fadeAnim);
+        return set;
     }
 
     @Override
@@ -130,7 +164,8 @@ public class PopUpWidowMainMenu implements MyOnClickListener {
             case R.id.menuMainBtnLanguage: {
 
                 Intent intent = new Intent(context, ActivityLanguage.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
 
                 if (interstitialAd != null && interstitialAd.isLoaded()) {
                     interstitialAd.show();

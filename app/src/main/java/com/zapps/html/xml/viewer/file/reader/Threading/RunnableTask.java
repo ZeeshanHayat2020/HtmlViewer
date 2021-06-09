@@ -19,7 +19,7 @@ public class RunnableTask implements Runnable {
     private Handler mUiHandler;
     private List<ModelFiles> filesList;
     private String fileExtension;
-
+    public static Boolean isCancel = false;
 
     public RunnableTask(Handler mUiHandler, List<ModelFiles> filesList, String fileExtension) {
         this.mUiHandler = mUiHandler;
@@ -35,18 +35,19 @@ public class RunnableTask implements Runnable {
         mUiHandler.sendMessage(createMessage(Constant.ON_POST_EXECUTE));
     }
 
-
     private void fetchFiles(File parentFile) {
 
         File[] files = parentFile.listFiles();
         if (files != null) {
-            for (int i = 0; i < files.length; i++) {
-
-                if (files[i].isDirectory()) {
-                    fetchFiles(files[i]);
+            for (File file : files) {
+                if (isCancel) {
+                    return;
+                }
+                if (file.isDirectory()) {
+                    fetchFiles(file);
                 } else {
-                    if (files[i].getName().endsWith(fileExtension)) {
-                        filesList.add(new ModelFiles(files[i].getAbsolutePath(), files[i].getName(), getFileSize(files[i])));
+                    if (file.getName().endsWith(fileExtension)) {
+                        filesList.add(new ModelFiles(file.getAbsolutePath(), file.getName(), getFileSize(file)));
                     }
                 }
             }

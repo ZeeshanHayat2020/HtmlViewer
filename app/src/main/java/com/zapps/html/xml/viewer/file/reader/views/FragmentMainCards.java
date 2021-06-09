@@ -34,10 +34,13 @@ public class FragmentMainCards extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.item_view_card_view, container, false);
         cardView = (CardView) view.findViewById(R.id.cardView);
-        cardView.setMaxCardElevation(cardView.getCardElevation() * InterfaceAdapterMainCard.MAX_ELEVATION_FACTOR);
+//        cardView.setMaxCardElevation(cardView.getCardElevation() * InterfaceAdapterMainCard.MAX_ELEVATION_FACTOR);
         TextView title = (TextView) view.findViewById(R.id.itemCards_tv);
-        ModelMainCards modelMainCards = getArguments().getParcelable("place");
-        title.setText(modelMainCards.getName());
+        ModelMainCards modelMainCards = null;
+        if (getArguments() != null) {
+            modelMainCards = getArguments().getParcelable("place");
+            title.setText(modelMainCards.getName());
+        }
         return view;
     }
 

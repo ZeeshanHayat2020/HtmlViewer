@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.text.TextUtils;
 import android.util.Log;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -45,13 +46,12 @@ public class FileUtils {
                 final String type = split[0];
 
                 String fullPath = getPathFromExtSD(split);
-                if (fullPath != "") {
+                if (!fullPath.equals("")) {
                     return fullPath;
                 } else {
                     return null;
                 }
             }
-
             // DownloadsProvider
             else if (isDownloadsDocument(uri)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -123,7 +123,6 @@ public class FileUtils {
                 final String type = split[0];
 
                 Uri contentUri = null;
-
                 if ("image".equals(type)) {
                     contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
                 } else if ("video".equals(type)) {
@@ -131,8 +130,8 @@ public class FileUtils {
                 } else if ("audio".equals(type)) {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
-                  selection = "_id=?";
-                 selectionArgs = new String[]{split[1]};
+                selection = "_id=?";
+                selectionArgs = new String[]{split[1]};
 
 
                 return getDataColumn(context, contentUri, selection,
@@ -153,16 +152,13 @@ public class FileUtils {
             if (isGoogleDriveUri(uri)) {
                 return getDriveFilePath(uri, context);
             }
-             if( Build.VERSION.SDK_INT == Build.VERSION_CODES.N)
-             {
+            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N) {
                 // return getFilePathFromURI(context,uri);
-                 return getMediaFilePathForN(uri, context);
+                return getMediaFilePathForN(uri, context);
                 // return getRealPathFromURI(context,uri);
-             }else
-             {
-
-                 return getDataColumn(context, uri, null, null);
-             }
+            } else {
+                return getDataColumn(context, uri, null, null);
+            }
 
 
         }
@@ -181,7 +177,6 @@ public class FileUtils {
      */
     private static boolean fileExists(String filePath) {
         File file = new File(filePath);
-
         return file.exists();
     }
 
@@ -305,8 +300,7 @@ public class FileUtils {
     }
 
 
-    private static String getDataColumn(Context context, Uri uri,
-                                        String selection, String[] selectionArgs) {
+    private static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
         Cursor cursor = null;
         final String column = "_data";
         final String[] projection = {column};
@@ -320,8 +314,9 @@ public class FileUtils {
                 return cursor.getString(index);
             }
         } finally {
-            if (cursor != null)
+            if (cursor != null) {
                 cursor.close();
+            }
         }
 
         return null;

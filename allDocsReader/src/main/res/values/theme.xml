@@ -86,5 +86,11 @@
         </item>
     </style>
 
+    <style name="ProgressDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/_14sdp</item>
+        <item name="android:progressBarStyleSmall">@dimen/_30sdp</item>
+    </style>
+
 
 </resources>

@@ -59,6 +59,8 @@ public class FileReaderThread extends Thread {
         try {
             IReader reader = null;
             String fileName = filePath.toLowerCase();
+            reader = new TXTReader(control, filePath, encoding);
+              /*
             // doc
             if (fileName.endsWith(MainConstant.FILE_TYPE_DOC) || fileName.endsWith(MainConstant.FILE_TYPE_DOT)) {
                 reader = new DOCReader(control, filePath);
@@ -72,7 +74,7 @@ public class FileReaderThread extends Thread {
             } else {
                 reader = new TXTReader(control, filePath, encoding);
             }
-         /*   //
+          //
             else if (fileName.endsWith(MainConstant.FILE_TYPE_TXT)) {
                 reader = new TXTReader(control, filePath, encoding);
             }

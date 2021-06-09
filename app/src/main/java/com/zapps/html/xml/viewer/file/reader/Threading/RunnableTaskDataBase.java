@@ -23,7 +23,6 @@ public class RunnableTaskDataBase implements Runnable {
     private List<ModelFiles> filesList;
     private DataBaseHelper dataBaseHelper;
 
-
     public RunnableTaskDataBase(Handler mUiHandler, List<ModelFiles> filesList, DataBaseHelper dataBaseHelper) {
         this.mUiHandler = mUiHandler;
         this.filesList = filesList;
@@ -45,6 +44,7 @@ public class RunnableTaskDataBase implements Runnable {
         Date currentDate;
         long difference;
         for (int i = temList.size(); i > 0; i--) {
+
             int position = i - 1;
             ModelFiles modelFiles = temList.get(position);
             if (filesList.size() < 9) {
@@ -68,40 +68,4 @@ public class RunnableTaskDataBase implements Runnable {
 
         }
     }
-
-/*
-
-    private void fetchFiles(File parentFile) {
-
-        File[] files = parentFile.listFiles();
-        if (files != null) {
-            for (int i = 0; i < files.length; i++) {
-
-                if (files[i].isDirectory()) {
-                    fetchFiles(files[i]);
-                } else {
-                    */
-/*switch (MyUtils.getExt(files[i].getName())) {
-                        case ".html": {
-                            htmlFilesList.add(new ModelFiles(files[i].getAbsolutePath()));
-                        }
-                        break;
-                        case ".xml": {
-                            xmlFilesList.add(new ModelFiles(files[i].getAbsolutePath()));
-                        }
-                        break;
-                    }*//*
-
-                    if (files[i].getName().endsWith(fileExtension)) {
-                        filesList.add(new ModelFiles(files[i].getAbsolutePath(), files[i].getName(), getFileSize(files[i])));
-                    }
-                }
-            }
-
-        }
-
-    }
-*/
-
-
 }

@@ -7,6 +7,7 @@
 
 package com.zapps.docsReaderModule.officereader;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ContentResolver;
@@ -26,6 +27,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -37,6 +40,7 @@ import android.webkit.MimeTypeMap;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,6 +50,8 @@ import com.zapps.docsReaderModule.constant.DocsReaderConstant;
 import com.zapps.docsReaderModule.constant.EventConstant;
 import com.zapps.docsReaderModule.constant.MainConstant;
 import com.zapps.docsReaderModule.constant.wp.WPViewConstant;
+import com.zapps.docsReaderModule.fc.hpsf.Constants;
+import com.zapps.docsReaderModule.fc.hpsf.Util;
 import com.zapps.docsReaderModule.fc.util.IOUtils;
 import com.zapps.docsReaderModule.macro.DialogListener;
 import com.zapps.docsReaderModule.officereader.beans.AImageButton;
@@ -65,6 +71,7 @@ import com.zapps.docsReaderModule.system.IMainFrame;
 import com.zapps.docsReaderModule.system.MainControl;
 import com.zapps.docsReaderModule.system.beans.pagelist.IPageListViewListener;
 import com.zapps.docsReaderModule.system.dialog.ColorPickerDialog;
+import com.zapps.docsReaderModule.utils.TaskRetrievePath;
 
 
 import java.io.File;
@@ -109,7 +116,6 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
 
     private FindToolBar searchBar;
 
-    private DBService dbService;
 
     private SheetBar bottomBar;
 
@@ -140,8 +146,6 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
 
     private String tempFilePath;
     private String filePath;
-    private String fileName;
-    private String tempFileExtension;
     Intent filesDataReceivingIntent;
 
     public void setStatusBarGradient(Activity activity) {
@@ -165,6 +169,7 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
                 init();
             }
         });
+/*
         control.setOffictToPicture(new IOfficeToPicture() {
             public Bitmap getBitmap(int componentWidth, int componentHeight) {
                 if (componentWidth == 0 || componentHeight == 0) {
@@ -216,90 +221,49 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
                 // TODO Auto-generated method stub
 
             }
-        });
+        });*/
         setContentView(appFrame);
     }
 
     private void init() {
         filesDataReceivingIntent = getIntent();
-        dbService = new DBService(getApplicationContext());
         String action = filesDataReceivingIntent.getAction();
         String type = filesDataReceivingIntent.getType();
-
         if (Intent.ACTION_VIEW.equals(action) && type != null) {
             if (type.equals("application/xml") || type.equals("text/xml") || type.equals("text/html")) {
                 Uri tempUri = filesDataReceivingIntent.getData();
-                tempFileExtension = "." + getMimeType(ActivityDocumentReader.this, tempUri);
-                filePath = String.valueOf(Uri.parse(getFilePathFromExternalAppsURI(ActivityDocumentReader.this, tempUri, tempFileExtension)));
+                if (tempUri != null) {
+                    TaskRetrievePath taskRetrievePath = new TaskRetrievePath(ActivityDocumentReader.this, tempUri);
+                    Thread thread = new Thread(taskRetrievePath);
+                    thread.start();
+                    try {
+                        thread.join();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    filePath = taskRetrievePath.getFilePath();
+                    if (filePath == null || TextUtils.isEmpty(filePath) || filePath.equals("")) {
+                        filePath = String.valueOf(Uri.parse(taskRetrievePath.getFilePathFromExternalAppsURI(ActivityDocumentReader.this, tempUri)));
+                    }
+                } else {
+                    filePath = "NoFile";
+                }
             }
         } else {
             if (filesDataReceivingIntent != null) {
                 filePath = filesDataReceivingIntent.getStringExtra(DocsReaderConstant.KEY_INTENT_SELECTED_FILE_PATH);
-                tempFileExtension = filePath.substring(filePath.lastIndexOf("."));
-//                Log.d(TAG, "init: Extension:" + tempFileExtension);
             }
         }
-//        Log.d("AllDocs Reader", "init: filePath" + filePath);
         try {
-            openFile();
+            File file = new File(filePath);
+            Log.d(TAG, "init: File Path : " + file.getPath());
+            if (file.exists() && !file.isDirectory()) {
+                openFile();
+            } else {
+                dialogFileNotExist(file.getName());
+            }
         } catch (Exception e) {
             Log.e(TAG, "Exception:", e);
-        }
-
-
-    }
-
-    public String getFilePathFromExternalAppsURI(Context context, Uri contentUri, String extension) {
-        fileName = getFileName(contentUri);
-        if (!TextUtils.isEmpty(fileName)) {
-            File copyFile = new File(getFilesDir(), fileName);
-            copy(context, contentUri, copyFile);
-            return copyFile.getAbsolutePath();
-        }
-        return null;
-    }
-
-    public static String getFileName(Uri uri) {
-        if (uri == null) return null;
-        String fileName = null;
-        String path = uri.getPath();
-        int cut = path.lastIndexOf('/');
-        if (cut != -1) {
-            fileName = path.substring(cut + 1);
-        }
-        return fileName;
-    }
-
-    public static String getMimeType(Context context, Uri uri) {
-        String extension;
-
-        //Check uri format to avoid null
-        if (uri.getScheme().equals(ContentResolver.SCHEME_CONTENT)) {
-            //If scheme is a content
-            final MimeTypeMap mime = MimeTypeMap.getSingleton();
-            extension = mime.getExtensionFromMimeType(context.getContentResolver().getType(uri));
-        } else {
-            //If scheme is a File
-            //This will replace white spaces with %20 and also other special characters. This will avoid returning null values on file name with spaces and special characters.
-            extension = MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(new File(uri.getPath())).toString());
-
-        }
-
-        return extension;
-    }
-
-    public static void copy(Context context, Uri srcUri, File dstFile) {
-        try {
-            InputStream inputStream = context.getContentResolver().openInputStream(srcUri);
-            if (inputStream == null) return;
-            OutputStream outputStream = new FileOutputStream(dstFile);
-            IOUtils.copy2(inputStream, outputStream);
-            inputStream.close();
-            outputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -312,26 +276,17 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
             }
             filePath = Uri.decode(filePath);
         }
-
-        // 显示打开文件名称
         int index = filePath.lastIndexOf(File.separator);
         if (index > 0) {
             setTitle(filePath.substring(index + 1));
         } else {
             setTitle(filePath);
         }
-
-        boolean isSupport = FileKit.instance().isSupport(filePath);
-        //写入本地数据库
-        if (isSupport) {
-            dbService.insertRecentFiles(MainConstant.TABLE_RECENT, filePath);
-        }
         // create view
         createView();
         // open file
         control.openFile(filePath);
         // initialization marked
-        initMarked();
     }
 
     private void saveBitmapToFile(Bitmap bitmap) {
@@ -419,38 +374,7 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
     }
 
     public void onBackPressed() {
-        if (isSearchbarActive()) {
-            showSearchBar(false);
-            updateToolsbarStatus();
-        } else {
-            Object obj = control.getActionValue(EventConstant.PG_SLIDESHOW, null);
-            if (obj != null && (Boolean) obj) {
-                fullScreen(false);
-                this.control.actionEvent(EventConstant.PG_SLIDESHOW_END, null);
-            } else {
-                if (control.getReader() != null) {
-                    control.getReader().abortReader();
-                }
-                if (marked != dbService.queryItem(MainConstant.TABLE_STAR, filePath)) {
-                    if (!marked) {
-                        dbService.deleteItem(MainConstant.TABLE_STAR, filePath);
-                    } else {
-                        dbService.insertStarFiles(MainConstant.TABLE_STAR, filePath);
-                    }
-
-                    Intent intent = new Intent();
-                    intent.putExtra(MainConstant.INTENT_FILED_MARK_STATUS, marked);
-                    setResult(RESULT_OK, intent);
-                }
-                if (control != null && control.isAutoTest()) {
-
-                    dialogExitFile();
-                } else {
-                    dialogExitFile();
-                }
-            }
-        }
-
+        dialogExitFile();
     }
 
     public void dialogExitFile() {
@@ -472,11 +396,23 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
                         finish();
                     }
                 });
-
-
         builder.show();
     }
 
+    public void dialogFileNotExist(String filePath) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ActivityDocumentReader.this, R.style.mTheme_Dialog);
+        builder.setTitle("Unable to Open File");
+        builder.setCancelable(false);
+        builder.setMessage(filePath + " was deleted, moved or renamed. View cant open such type of file.");
+        builder.setPositiveButton("Go Back",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        finish();
+                    }
+                });
+        builder.show();
+    }
 
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -687,17 +623,6 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
                 .createChooser(intent, getResources().getText(R.string.sys_share_title)));
     }
 
-    /**
-     * @return
-     */
-    public void initMarked() {
-        marked = dbService.queryItem(MainConstant.TABLE_STAR, filePath);
-        if (marked) {
-            toolsbar.setCheckState(EventConstant.FILE_MARK_STAR_ID, AImageCheckButton.CHECK);
-        } else {
-            toolsbar.setCheckState(EventConstant.FILE_MARK_STAR_ID, AImageCheckButton.UNCHECK);
-        }
-    }
 
     /**
      * @return
@@ -773,7 +698,6 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
      * @param actionID action ID
      * @param obj      acValue
      * @return True if the listener has consumed the event, false otherwise.
-     * @see #com.wxiwei.constant.wp.AttrIDConstant
      */
     public boolean doActionEvent(int actionID, Object obj) {
         try {
@@ -966,16 +890,15 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
     /**
      * event method, office engine dispatch
      *
-     * @param v               event source
-     * @param e1              MotionEvent instance
-     * @param e2              MotionEvent instance
-     * @param xValue          eventNethodType is ON_SCROLL, this is value distanceX
-     *                        eventNethodType is ON_FLING, this is value velocityY
-     *                        eventNethodType is other type, this is value -1
-     * @param yValue          eventNethodType is ON_SCROLL, this is value distanceY
-     *                        eventNethodType is ON_FLING, this is value velocityY
-     *                        eventNethodType is other type, this is value -1
-     * @param eventNethodType event method
+     * @param v      event source
+     * @param e1     MotionEvent instance
+     * @param e2     MotionEvent instance
+     * @param xValue eventNethodType is ON_SCROLL, this is value distanceX
+     *               eventNethodType is ON_FLING, this is value velocityY
+     *               eventNethodType is other type, this is value -1
+     * @param yValue eventNethodType is ON_SCROLL, this is value distanceY
+     *               eventNethodType is ON_FLING, this is value velocityY
+     *               eventNethodType is other type, this is value -1
      * @see IMainFrame#ON_CLICK
      * @see IMainFrame#ON_DOUBLE_TAP
      * @see IMainFrame#ON_DOUBLE_TAP_EVENT
@@ -1041,6 +964,7 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
     /**
      * init float button, for slideshow pageup/pagedown
      */
+    @SuppressLint("WrongConstant")
     private void initFloatButton() {
         //icon width and height
         BitmapFactory.Options opts = new BitmapFactory.Options();
@@ -1345,10 +1269,6 @@ public class ActivityDocumentReader extends AppCompatActivity implements IMainFr
         toolsbar = null;
         searchBar = null;
         bottomBar = null;
-        if (dbService != null) {
-            dbService.dispose();
-            dbService = null;
-        }
         if (appFrame != null) {
             int count = appFrame.getChildCount();
             for (int i = 0; i < count; i++) {

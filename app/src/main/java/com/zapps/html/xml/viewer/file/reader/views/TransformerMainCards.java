@@ -28,7 +28,6 @@ public class TransformerMainCards implements ViewPager.OnPageChangeListener, Vie
     private float lastOffset;
     private boolean scalingEnabled;
     private String TAG = "Transformer";
-    private InterstitialAd mInterstitialAd;
     private OnClickMainCardFilesListener onClickMainCardFilesListener;
 
     public TransformerMainCards(Context context, Activity activity, ViewPager viewPager, AdapterMainCardMainCardsPager adapter) {
@@ -37,7 +36,7 @@ public class TransformerMainCards implements ViewPager.OnPageChangeListener, Vie
         this.viewPager = viewPager;
         viewPager.addOnPageChangeListener(this);
         cardAdapter = adapter;
-        reqNewInterstitial(context);
+
     }
 
     public void setOnClickMainCardFilesListener(OnClickMainCardFilesListener onClickMainCardFilesListener) {
@@ -51,7 +50,6 @@ public class TransformerMainCards implements ViewPager.OnPageChangeListener, Vie
             if (currentCard != null) {
                 currentCard.animate().scaleY(1);
                 currentCard.animate().scaleX(1);
-                Log.d(TAG, "enableScaling: shrink Main Card Called.");
             }
         } else if (!scalingEnabled && enable) {
             // grow main card
@@ -60,7 +58,6 @@ public class TransformerMainCards implements ViewPager.OnPageChangeListener, Vie
                 //enlarge the current item
                 currentCard.animate().scaleY(1.1f);
                 currentCard.animate().scaleX(1.1f);
-                Log.d(TAG, "enableScaling: Enlarge Main Card Called.");
             }
         }
         scalingEnabled = enable;
@@ -114,8 +111,8 @@ public class TransformerMainCards implements ViewPager.OnPageChangeListener, Vie
                 currentCard.setScaleY((float) (1 + 0.1 * (1 - realOffset)));
             }
 
-            currentCard.setCardElevation((InterfaceAdapterMainCard.BASE_ELEVATION + InterfaceAdapterMainCard.BASE_ELEVATION
-                    * (InterfaceAdapterMainCard.MAX_ELEVATION_FACTOR - 1) * (1 - realOffset)));
+           /* currentCard.setCardElevation((InterfaceAdapterMainCard.BASE_ELEVATION + InterfaceAdapterMainCard.BASE_ELEVATION
+                    * (InterfaceAdapterMainCard.MAX_ELEVATION_FACTOR - 1) * (1 - realOffset)));*/
 
             for (int c = 0; c < currentCard.getChildCount(); c++) {
                 RelativeLayout rootViewFiles = (RelativeLayout) currentCard.getChildAt(c);
@@ -134,8 +131,8 @@ public class TransformerMainCards implements ViewPager.OnPageChangeListener, Vie
                 nextCard.setScaleX((float) (1 + 0.1 * (realOffset)));
                 nextCard.setScaleY((float) (1 + 0.1 * (realOffset)));
             }
-            nextCard.setCardElevation((InterfaceAdapterMainCard.BASE_ELEVATION + InterfaceAdapterMainCard.BASE_ELEVATION
-                    * (InterfaceAdapterMainCard.MAX_ELEVATION_FACTOR - 1) * (realOffset)));
+ /*           nextCard.setCardElevation((InterfaceAdapterMainCard.BASE_ELEVATION + InterfaceAdapterMainCard.BASE_ELEVATION
+                    * (InterfaceAdapterMainCard.MAX_ELEVATION_FACTOR - 1) * (realOffset)));*/
 
         }
         lastOffset = positionOffset;
@@ -148,105 +145,6 @@ public class TransformerMainCards implements ViewPager.OnPageChangeListener, Vie
     @Override
     public void onPageScrollStateChanged(int state) {
 
-    }
-
-    public void intentToNext(Activity activity) {
-        final Intent intent = new Intent(context, activity.getClass());
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-            mInterstitialAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    context.startActivity(intent);
-                }
-            });
-            reqNewInterstitial(context);
-        } else {
-            context.startActivity(intent);
-        }
-
-    }
-
-
-/*
-    public void checkStoragePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(activity,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE
-                            , Manifest.permission.WRITE_EXTERNAL_STORAGE
-                    },
-                    Constant.REQUEST_PERMISSION_STORAGE);
-            return;
-        }
-    }
-
-    public void checkPhoneStatePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE)
-                != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(activity,
-                    new String[]{Manifest.permission.READ_PHONE_STATE
-                    },
-                    Constant.REQUEST_PERMISSIONS_PHONE_STATE);
-            return;
-        }
-    }
-
-    public void checkRecordingPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO)
-                != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(activity,
-                    new String[]{Manifest.permission.RECORD_AUDIO
-                    },
-                    Constant.REQUEST_PERMISSIONS_RECORD_AUDIO);
-            return;
-        }
-    }
-
-    public boolean hasStoragePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                    && ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            } else
-                return true;
-        } else return true;
-    }
-
-    public boolean hasPhoneStatePermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            } else
-                return true;
-        } else return true;
-    }
-
-    public boolean hasRecordAudioPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            } else
-                return true;
-        } else return true;
-    }
-*/
-
-
-    public void reqNewInterstitial(Context context) {
-        mInterstitialAd = new InterstitialAd(context);
-        mInterstitialAd.setAdUnitId(context.getResources().getString(R.string.interstitial_Id));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
 }

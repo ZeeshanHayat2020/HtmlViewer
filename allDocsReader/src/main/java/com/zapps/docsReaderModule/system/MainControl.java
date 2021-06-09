@@ -19,6 +19,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.zapps.docsReaderModule.R;
 import com.zapps.docsReaderModule.common.ICustomDialog;
 import com.zapps.docsReaderModule.common.IOfficeToPicture;
 import com.zapps.docsReaderModule.common.ISlideShow;
@@ -72,8 +73,6 @@ public class MainControl extends AbstractControl {
         // listener
         initListener();
         //
-        toast = Toast.makeText(getActivity().getApplicationContext(), "", 0);
-
         // 自动测试
         Intent intent = getActivity().getIntent();
         String autoTest = intent.getStringExtra("autoTest");
@@ -147,10 +146,18 @@ public class MainControl extends AbstractControl {
                         if (getMainFrame().isShowProgressBar()) {
                             post(new Runnable() {
                                 public void run() {
-                                    progressDialog = ProgressDialog.show(getActivity(),
+                                    progressDialog = new ProgressDialog(getActivity(), R.style.ProgressDialog);
+                                    progressDialog.setTitle("Render File");
+                                    progressDialog.setMessage("Please wait while file is being rendered.");
+                                    progressDialog.setCancelable(false);
+                                    progressDialog.setIndeterminate(false);
+                                    progressDialog.setOnCancelListener(null);
+                                    /*progressDialog = ProgressDialog.show(getActivity(),
                                             frame.getAppName(), frame.getLocalString("DIALOG_LOADING"),
                                             false, false, null);
+*/
                                     progressDialog.setOnKeyListener(onKeyListener);
+                                    progressDialog.show();
                                 }
                             });
                         } else {
@@ -299,7 +306,7 @@ public class MainControl extends AbstractControl {
         this.filePath = filePath;
         String fileName = filePath.toLowerCase();
         // word
-        if (fileName.endsWith(MainConstant.FILE_TYPE_DOC)
+   /*     if (fileName.endsWith(MainConstant.FILE_TYPE_DOC)
                 || fileName.endsWith(MainConstant.FILE_TYPE_DOCX)
                 || fileName.endsWith(MainConstant.FILE_TYPE_TXT)
                 || fileName.endsWith(MainConstant.FILE_TYPE_DOT)
@@ -328,19 +335,17 @@ public class MainControl extends AbstractControl {
         // PDF document
         else if (fileName.endsWith(MainConstant.FILE_TYPE_PDF)) {
             applicationType = MainConstant.APPLICATION_TYPE_PDF;
-        } else {
-            applicationType = MainConstant.APPLICATION_TYPE_WP;
-        }
+        } else {*/
+        applicationType = MainConstant.APPLICATION_TYPE_WP;;
 
         boolean isSupport = FileKit.instance().isSupport(fileName);
         // txt or no support
-        if (fileName.endsWith(MainConstant.FILE_TYPE_TXT)
-                || !isSupport) {
+        if (fileName.endsWith(MainConstant.FILE_TYPE_TXT) || !isSupport) {
             TXTKit.instance().readText(this, handler, filePath);
         } else {
             /*if (applicationType == MainConstant.APPLICATION_TYPE_PDF)
             {
-                try                
+                try
                 {
                     reader = new PDFReader(this, filePath);
                     createApplication(reader.getModel());
@@ -351,9 +356,7 @@ public class MainControl extends AbstractControl {
                 }
             }
             else*/
-            {
                 new FileReaderThread(this, handler, filePath, null).start();
-            }
         }
         return true;
     }

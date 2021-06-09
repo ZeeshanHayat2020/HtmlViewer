@@ -4,10 +4,18 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.zapps.html.xml.viewer.file.reader.R;
 import com.zapps.appsFlowModule.activities.ActivityIntroSLides;
 import com.zapps.appsFlowModule.activities.ActivityLanguage;
@@ -20,12 +28,11 @@ import com.google.android.gms.ads.MobileAds;
 
 public class ActivitySplash extends ActivityBase {
 
+    private static final String TAG = "ActivitySplash";
     private ActivitySplashBinding activitySplashBinding;
     private Handler launchHandler;
     private Runnable launchRunnable;
     private MyPreferences myPreferences;
-    private boolean isAdLeftApp = false;
-
     int currentApiVersion;
 
     @Override
@@ -34,6 +41,7 @@ public class ActivitySplash extends ActivityBase {
         hideSystemUI();
         MobileAds.initialize(this, getResources().getString(R.string.app_Id));
         reqNewInterstitial(this);
+        initInterstitialListeners();
         activitySplashBinding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
         initViews();
     }
@@ -60,12 +68,18 @@ public class ActivitySplash extends ActivityBase {
             });
         }
 
+
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        isAdLeftApp = false;
         if (haveNetworkConnection()) {
             showInterstitial();
         } else {
@@ -74,43 +88,87 @@ public class ActivitySplash extends ActivityBase {
     }
 
     private void initViews() {
+        AppOpenManager.isInterstitialShowing = true;
         myPreferences = new MyPreferences(this);
     }
 
     private void showInterstitial() {
-        launchRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if (mInterstitialAd.isLoaded() && !isAdLeftApp) {
-                    mInterstitialAd.show();
-                    AppOpenManager.isInterstitialShowing = true;
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            AppOpenManager.isInterstitialShowing = false;
-                            launchLanguageActivity();
-                        }
-                    });
-                    reqNewInterstitial(ActivitySplash.this);
-                } else {
-                    launchLanguageActivity();
-                }
+        launchRunnable = () -> {
+            if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            } else if (mFacebookIntersAd != null && mFacebookIntersAd.isAdLoaded() && !mFacebookIntersAd.isAdInvalidated()) {
+                mFacebookIntersAd.show();
+            } else {
+                launchLanguageActivity();
             }
+
         };
         launchHandler = new Handler(getMainLooper());
-        launchHandler.postDelayed(launchRunnable, 6000);
+        launchHandler.postDelayed(launchRunnable, 8000);
+    }
+
+    private void initInterstitialListeners() {
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                Log.d(TAG, "onAdFailedToLoad: " + loadAdError.getResponseInfo());
+                reqNewFacebookInterstitial(intiFacebookAdListeners(), 2);
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                launchLanguageActivity();
+                reqNewInterstitial(ActivitySplash.this);
+                Log.d(TAG, "onAdClosed: ");
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                Log.d(TAG, "onAdImpression: ");
+            }
+        });
+    }
+
+    private InterstitialAdListener intiFacebookAdListeners() {
+        return new InterstitialAdListener() {
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+
+            }
+
+            @Override
+            public void onInterstitialDisplayed(Ad ad) {
+
+            }
+
+            @Override
+            public void onInterstitialDismissed(Ad ad) {
+                launchLanguageActivity();
+            }
+        };
     }
 
     private void launchWithDelay() {
-        launchRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if (!isAdLeftApp) {
-                    launchLanguageActivity();
-                }
-            }
-        };
+        launchRunnable = this::launchLanguageActivity;
         launchHandler = new Handler();
         launchHandler.postDelayed(launchRunnable, 4000);
     }
@@ -137,14 +195,13 @@ public class ActivitySplash extends ActivityBase {
     @Override
     protected void onPause() {
         super.onPause();
-        isAdLeftApp = true;
         launchHandler.removeCallbacks(launchRunnable);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        isAdLeftApp = true;
         launchHandler.removeCallbacks(launchRunnable);
+        AppOpenManager.isInterstitialShowing = false;
     }
 }

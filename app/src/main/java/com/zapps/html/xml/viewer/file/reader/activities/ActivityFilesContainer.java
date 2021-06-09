@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -31,6 +32,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.InterstitialAdListener;
+import com.google.android.gms.ads.LoadAdError;
 import com.zapps.html.xml.viewer.file.reader.R;
 import com.zapps.docsReaderModule.constant.DocsReaderConstant;
 import com.zapps.appsFlowModule.contstants.Constant;
@@ -49,6 +54,7 @@ import com.zapps.html.xml.viewer.file.reader.appUtils.AnimUtils;
 import com.zapps.html.xml.viewer.file.reader.appUtils.AppOpenManager;
 import com.zapps.html.xml.viewer.file.reader.appUtils.MyUtils;
 import com.google.android.gms.ads.AdListener;
+import com.zapps.html.xml.viewer.file.reader.popupWindows.ProgressDialogTransparent;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -74,9 +80,10 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
     private static TextView tvNoSearchFound;
     private boolean isSelectAll = true;
     private PopUpFloatingMenu popUpFloatingMenu;
-
     private DataBaseHelper dataBaseHelper;
-    private int adCounter = 0;
+    private int adCounter = 5;
+    private ProgressDialogTransparent transparentBar;
+    private Intent intent = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +92,7 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
         binding = DataBindingUtil.setContentView(this, R.layout.activity_files_container);
         binding.setClickHandler(this);
         reqNewInterstitial(ActivityFilesContainer.this);
+        initInterstitialListeners();
         initViews();
         initUiHandler();
         initRecyclerView();
@@ -172,7 +180,87 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
         }
     }
 
+    private void initInterstitialListeners() {
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(LoadAdError loadAdError) {
+                super.onAdFailedToLoad(loadAdError);
+                reqNewFacebookInterstitial(intiFacebookAdListeners(), 2);
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                AppOpenManager.isInterstitialShowing = false;
+                reqNewInterstitial(ActivityFilesContainer.this);
+                initInterstitialListeners();
+                if (intent != null)
+                    startActivity(intent);
+            }
+
+            @Override
+            public void onAdImpression() {
+                super.onAdImpression();
+                AppOpenManager.isInterstitialShowing = true;
+            }
+        });
+    }
+
+    private InterstitialAdListener intiFacebookAdListeners() {
+        return new InterstitialAdListener() {
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+                reqNewInterstitial(ActivityFilesContainer.this);
+                initInterstitialListeners();
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+
+            }
+
+            @Override
+            public void onLoggingImpression(Ad ad) {
+
+            }
+
+            @Override
+            public void onInterstitialDisplayed(Ad ad) {
+                AppOpenManager.isInterstitialShowing = true;
+            }
+
+            @Override
+            public void onInterstitialDismissed(Ad ad) {
+                AppOpenManager.isInterstitialShowing = false;
+                reqNewFacebookInterstitial(intiFacebookAdListeners(), 0);
+                if (intent != null) {
+                    startActivity(intent);
+                }
+            }
+        };
+    }
+
+    private void showInterstitialAd(Intent intent) {
+        if (mInterstitialAd != null && mInterstitialAd.isLoaded() && adCounter > 3) {
+            mInterstitialAd.show();
+            adCounter = 0;
+        } else if (mFacebookIntersAd != null && mFacebookIntersAd.isAdLoaded() && !mFacebookIntersAd.isAdInvalidated() && adCounter > 3) {
+            mFacebookIntersAd.show();
+            adCounter = 0;
+        } else {
+            startActivity(intent);
+        }
+        adCounter++;
+    }
+
     private void initViews() {
+        transparentBar = new ProgressDialogTransparent(this, 0, this);
         Intent intent = getIntent();
         if (intent != null) {
             activityCall = ActivityCall.valueOf(intent.getStringExtra(Constant.KEY_INTENT_ACTIVITY_CALL));
@@ -215,10 +303,9 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
                 Bundle bundle = msg.getData();
                 if (bundle != null) {
                     String action = bundle.getString(Constant.ACTION_THREAD_FILES_FETCHING);
-
                     switch (action) {
                         case Constant.ON_PRE_EXECUTE: {
-                            setProgressDialogMessage("Retrieving Files from storage");
+                            setProgressDialogMessage("Retrieving Files from storage.");
                             showProgressDialog();
                         }
                         break;
@@ -243,6 +330,7 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
     }
 
     private void startFetchingThread() {
+        RunnableTask.isCancel = false;
         mThread = new Thread(mFetchingRunnable);
         mThread.start();
         mUIHandler.sendMessage(createMessage(Constant.ON_PRE_EXECUTE));
@@ -255,24 +343,15 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
             @Override
             public void onItemClicked(AdapterFilesContainer.ViewHolder viewHolder, ModelFiles modelFiles) {
                 if (!adapter.isContextualMenuOpen) {
-                    if (mInterstitialAd.isLoaded() && adCounter == 6) {
-                        adCounter = 0;
-                        mInterstitialAd.show();
-                        AppOpenManager.isInterstitialShowing = true;
-                        mInterstitialAd.setAdListener(new AdListener() {
-                            @Override
-                            public void onAdClosed() {
-                                super.onAdClosed();
-
-                                intentOnItemClick(modelFiles);
-                                AppOpenManager.isInterstitialShowing = false;
-                                reqNewInterstitial(ActivityFilesContainer.this);
-                            }
-                        });
-                    } else {
-                        intentOnItemClick(modelFiles);
+                    transparentBar.show();
+                    if (dataBaseHelper.checkIsRecordExist(AppConstants.TABLE_RECENT_FILES,
+                            modelFiles.getFilePath())) {
+                        dataBaseHelper.deleteFiles(AppConstants.TABLE_RECENT_FILES, modelFiles.getFilePath());
                     }
-                    adCounter++;
+                    dataBaseHelper.insertFile(AppConstants.TABLE_RECENT_FILES, modelFiles.getFilePath(), modelFiles.getFileSize(), MyUtils.getCurrentTimeInFormat());
+
+                    intent = intentOnItemClick(modelFiles);
+                    showInterstitialAd(intent);
                 } else {
                     viewHolder.getItemRowBinding().checkBoxMultiSelect.performClick();
                 }
@@ -314,16 +393,11 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
         tvNoSearchFound.setVisibility(visibility);
     }
 
-    private void intentOnItemClick(ModelFiles modelFiles) {
-        if (dataBaseHelper.checkIsRecordExist(AppConstants.TABLE_RECENT_FILES,
-                modelFiles.getFilePath())) {
-            dataBaseHelper.deleteFiles(AppConstants.TABLE_RECENT_FILES, modelFiles.getFilePath());
-        }
-        dataBaseHelper.insertFile(AppConstants.TABLE_RECENT_FILES, modelFiles.getFilePath(), modelFiles.getFileSize(), MyUtils.getCurrentTimeInFormat());
+    private Intent intentOnItemClick(ModelFiles modelFiles) {
         Intent intent = new Intent(ActivityFilesContainer.this, ActivityDocumentReader.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(DocsReaderConstant.KEY_INTENT_SELECTED_FILE_PATH, modelFiles.getFilePath());
-        ActivityFilesContainer.this.startActivity(intent);
+        return intent;
     }
 
     private void openContextualMenu() {
@@ -495,18 +569,11 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 dialogBuilder.dismiss();
-
+                intent = null;
                 if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
-                    AppOpenManager.isInterstitialShowing = true;
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                            AppOpenManager.isInterstitialShowing = false;
-
-                        }
-                    });
+                } else if (mFacebookIntersAd != null && mFacebookIntersAd.isAdLoaded() && !mFacebookIntersAd.isAdInvalidated()) {
+                    mFacebookIntersAd.show();
                 }
 
             }
@@ -525,7 +592,6 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-
                 for (int i = 0; i < temList.size(); i++) {
                    /* try {
                         Thread.sleep(500);
@@ -549,7 +615,6 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
                         dataBaseHelper.updateFile(AppConstants.TABLE_RECENT_FILES, to.getAbsolutePath(), filePath);
                     }
                 }
-
                 new Handler(getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
@@ -584,20 +649,12 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
-              /*  if (mInterstitialAd.isLoaded()) {
+                intent = null;
+                if (mInterstitialAd.isLoaded()) {
                     mInterstitialAd.show();
-                    AppOpenManager.isInterstitialShowing = true;
-                    mInterstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            dialogInterface.dismiss();
-                            AppOpenManager.isInterstitialShowing = false;
-
-                        }
-                    });
-                } else {
-                    dialogInterface.dismiss();
-                }*/
+                } else if (mFacebookIntersAd != null && mFacebookIntersAd.isAdLoaded() && !mFacebookIntersAd.isAdInvalidated()) {
+                    mFacebookIntersAd.show();
+                }
             }
         });
         builder.show();
@@ -608,59 +665,91 @@ public class ActivityFilesContainer extends ActivityBase implements MenuItem.OnA
     private void doDeleteFiles(List<ModelFiles> tempList) {
         setProgressDialogMessage(getString(R.string.dialogMsgDeleting));
         showProgressDialog();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                for (int i = 0; i < tempList.size(); i++) {
-                    File file = new File(tempList.get(i).getFilePath());
-                    if (file.exists()) {
-                        file.delete();
-                    }
-                    adapter.getFilesListFiltered().remove(tempList.get(i));
-
-                    if (dataBaseHelper.checkIsRecordExist(AppConstants.TABLE_RECENT_FILES, tempList.get(i).getFilePath())) {
-                        dataBaseHelper.deleteFiles(AppConstants.TABLE_RECENT_FILES, tempList.get(i).getFilePath());
-                    }
+        Runnable runnable = () -> {
+            for (int i = 0; i < tempList.size(); i++) {
+                File file = new File(tempList.get(i).getFilePath());
+                if (file.exists()) {
+                    file.delete();
                 }
+                adapter.getFilesListFiltered().remove(tempList.get(i));
 
-
-                new Handler(getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        hideProgressDialog();
-                        showToast(getString(R.string.deleteSuccess));
-                        startFetchingThread();
-                    }
-                });
-
+                if (dataBaseHelper.checkIsRecordExist(AppConstants.TABLE_RECENT_FILES, tempList.get(i).getFilePath())) {
+                    dataBaseHelper.deleteFiles(AppConstants.TABLE_RECENT_FILES, tempList.get(i).getFilePath());
+                }
             }
+
+            new Handler(getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    hideProgressDialog();
+                    showToast(getString(R.string.deleteSuccess));
+                    startFetchingThread();
+                }
+            });
 
         };
         Thread thread = new Thread(runnable);
         thread.start();
-
     }
 
     public void shareFileS(List<ModelFiles> tempList) {
-        Intent intentShareFile = new Intent(Intent.ACTION_SEND_MULTIPLE);
-        ArrayList<Uri> uris = new ArrayList<>();
-        for (int i = 0; i < tempList.size(); i++) {
-            File file = new File(tempList.get(i).getFilePath());
-            if (file.exists()) {
-                Uri photoURI = FileProvider.getUriForFile(ActivityFilesContainer.this, getApplicationContext().getPackageName() + ".provider", file);
-                uris.add(photoURI);
+        Runnable runnable = () -> {
+            Intent intentShareFile = new Intent(Intent.ACTION_SEND_MULTIPLE);
+            ArrayList<Uri> uris = new ArrayList<>();
+            for (int i = 0; i < tempList.size(); i++) {
+                File file = new File(tempList.get(i).getFilePath());
+                if (file.exists()) {
+                    Uri photoURI = FileProvider.getUriForFile(ActivityFilesContainer.this, getApplicationContext().getPackageName() + ".provider", file);
+                    uris.add(photoURI);
+                }
             }
+            intentShareFile.setType("application/*");
+            intentShareFile.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
+            intentShareFile.putExtra(Intent.EXTRA_SUBJECT, "Sharing Files...");
+            intentShareFile.putExtra(Intent.EXTRA_TEXT, "Sharing Files...");
+            intentShareFile.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intentShareFile.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+            new Handler(getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(Intent.createChooser(intentShareFile, "Share File"));
+                }
+            });
+
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (transparentBar != null && transparentBar.isShowing()) {
+            transparentBar.dismiss();
         }
-        intentShareFile.setType("application/*");
-        intentShareFile.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
-        intentShareFile.putExtra(Intent.EXTRA_SUBJECT, "Sharing Files...");
-        intentShareFile.putExtra(Intent.EXTRA_TEXT, "Sharing Files...");
-        startActivity(Intent.createChooser(intentShareFile, "Share File"));
     }
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        RunnableTask.isCancel = true;
         dataBaseHelper.closeDataBase();
+        if (mFacebookIntersAd != null) {
+            mFacebookIntersAd.destroy();
+        }
+        if (mInterstitialAd != null) {
+            mInterstitialAd = null;
+        }
+        super.onDestroy();
     }
+
+    @Override
+    protected void onStop() {
+        transparentBar.dismiss();
+        if (intent != null) {
+            intent = null;
+        }
+        super.onStop();
+    }
+
 }
